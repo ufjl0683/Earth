@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaferStatus", "WaferStatus\WaferStatus.csproj", "{101E10A2-DD91-48C8-B355-830C30D7FD08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaferStatus.Web", "WaferStatus.Web\WaferStatus.Web.csproj", "{53A3E7BA-4B8F-44B8-8101-180A78AE1EA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{101E10A2-DD91-48C8-B355-830C30D7FD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101E10A2-DD91-48C8-B355-830C30D7FD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101E10A2-DD91-48C8-B355-830C30D7FD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101E10A2-DD91-48C8-B355-830C30D7FD08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A3E7BA-4B8F-44B8-8101-180A78AE1EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A3E7BA-4B8F-44B8-8101-180A78AE1EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A3E7BA-4B8F-44B8-8101-180A78AE1EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A3E7BA-4B8F-44B8-8101-180A78AE1EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

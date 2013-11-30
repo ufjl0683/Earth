@@ -1,0 +1,68 @@
+﻿<navigation:Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slAmidaConsole.EqManager"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" Loaded="UserControl_Loaded" Background="{x:Null}">
+    <toolkit:TwilightBlueTheme>
+		<Grid x:Name="LayoutRoot"  >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.08*" />
+				<RowDefinition Height="0.92*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="90*" MinWidth="80" />
+				<ColumnDefinition Width="310*" />
+			</Grid.ColumnDefinitions>
+            <Border Grid.Column="1" Grid.Row="1" BorderThickness="3" BorderBrush="#FF12E23B" Margin="0,0,0,5">
+				<sdk:Frame x:Name="frame2" Style="{x:Null}" Margin="5,0,0,0" BorderBrush="#00000000"/>
+			</Border>
+			<HyperlinkButton Content="Logout" Height="20" Margin="0,4,0,0" x:Name="hyperlinkButton2" NavigateUri="/DbForms/tblEQ.xaml" TargetName="frame2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63" Click="hyperlinkButton2_Click" Grid.Column="1" FontSize="14" Foreground="#FFC1E2FF" />
+			<!--<toolkit:ExpressionDarkTheme></toolkit:ExpressionDarkTheme>-->
+			<TextBlock x:Name="txtUserID" Margin="0,2,67,2"  Text="TextBlock" FontSize="16" HorizontalAlignment="Right" Width="133" Grid.Column="1" Foreground="#FFEFEFEF" />
+			<Border HorizontalAlignment="Stretch"   Margin="0,0,10,5" Grid.Row="1" VerticalAlignment="Stretch" BorderThickness="3" BorderBrush="#FF13E33B" Padding="0"   >
+				<toolkit:Accordion x:Name="accordin" SelectionMode="ZeroOrMore" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+					
+					<toolkit:Accordion.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding MainMenu}" FontFamily="Lucida Sans Unicode"  FontSize="18" TextOptions.TextHintingMode="Fixed" />
+						</DataTemplate>
+					</toolkit:Accordion.ItemTemplate>
+					<toolkit:Accordion.ContentTemplate>
+						<DataTemplate>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" BorderBrush="Transparent"  >
+							<ItemsControl ItemsSource="{Binding Menus}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue"    >
+								
+                                <ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<HyperlinkButton Foreground="BlueViolet" Content="{Binding MenuName}" FontSize="16" NavigateUri="{Binding XAML}" TargetName="frame2" Margin="25,5,5,5" VerticalAlignment="Stretch" Click="HyperlinkButton_Click" >
+											
+										</HyperlinkButton>
+									</DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            </ScrollViewer>
+                        </DataTemplate>
+					</toolkit:Accordion.ContentTemplate>
+				</toolkit:Accordion>
+			</Border>
+			<sdk:GridSplitter HorizontalAlignment="Right" Grid.Row="1" Width="10">
+				<sdk:GridSplitter.Background>
+					<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+						<GradientStop Color="#FF959393" Offset="0" />
+						<GradientStop Color="#FFF1E4E4" Offset="0.381" />
+						<GradientStop Color="#FF959393" Offset="1" />
+						<GradientStop Color="#FFF1E4E4" Offset="0.645" />
+					</LinearGradientBrush>
+				</sdk:GridSplitter.Background>
+			</sdk:GridSplitter>
+			<TextBlock x:Name="txtMenuSelect" Margin="41,2,0,2"     FontSize="16" HorizontalAlignment="Center" Width="Auto" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#FFEFEFEF" VerticalAlignment="Center"   />
+            <HyperlinkButton Content="TMS OI" FontSize="13" Grid.RowSpan="2" Height="22" HorizontalAlignment="Left" Margin="10,5,0,0" Name="hyperlinkButton1" NavigateUri="http://10.3.231.140/pcmsqltest/tms%20oi.pdf" TargetName="_blank" VerticalAlignment="Top" Width="57" />
+        </Grid>
+
+	</toolkit:TwilightBlueTheme>
+
+</navigation:Page>

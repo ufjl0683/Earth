@@ -1,0 +1,1 @@
+AutoComp-IT1.exe text.txt

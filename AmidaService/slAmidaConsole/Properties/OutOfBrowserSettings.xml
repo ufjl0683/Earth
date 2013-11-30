@@ -1,0 +1,7 @@
+<OutOfBrowserSettings ShortName="slAmidaConsole 應用程式" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>桌面上的 slAmidaConsole 應用程式; 不論是在家、在辦公室或外出。</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="slAmidaConsole 應用程式" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.Icons />
+</OutOfBrowserSettings>

@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AmidaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AmidaModelStoreContainer">
+          <EntitySet Name="tblEQ" EntityType="AmidaModel.Store.tblEQ" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEQHistory" EntityType="AmidaModel.Store.tblEQHistory" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tblEQ">
+          <Key>
+            <PropertyRef Name="eqi_id" />
+          </Key>
+          <Property Name="eqi_id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="eq_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="eq_prober" Type="nvarchar" MaxLength="20" />
+          <Property Name="eq_tester" Type="nvarchar" MaxLength="20" />
+          <Property Name="eq_release_time" Type="datetime" Nullable="false" />
+          <Property Name="eq_comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="lot_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="probe_card_id" Type="nvarchar" MaxLength="30" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="recipe" Type="nvarchar" MaxLength="50" />
+          <Property Name="operator" Type="nvarchar" MaxLength="10" />
+          <Property Name="total_num_wafer" Type="int" Nullable="false" />
+          <Property Name="fab" Type="nvarchar" MaxLength="10" />
+          <Property Name="tested_num_wafer" Type="int" Nullable="false" />
+          <Property Name="total_num_chip" Type="int" Nullable="false" />
+          <Property Name="tested_num_chip" Type="int" Nullable="false" />
+          <Property Name="current_test_wafer_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsWarnig" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="current_identify" Type="bigint" />
+          <Property Name="expected_remain_time" Type="int" />
+          <Property Name="current_warning_identify" Type="int" />
+          <Property Name="eq_area" Type="nvarchar" MaxLength="50" />
+          <Property Name="wafer_id" Type="varchar" MaxLength="255" />
+          <Property Name="over_drift" Type="float" />
+          <Property Name="sub_status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblEQHistory">
+          <Key>
+            <PropertyRef Name="identify" />
+          </Key>
+          <Property Name="identify" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="eq_id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="status" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="lot_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="probe_card_id" Type="nvarchar" MaxLength="30" />
+          <Property Name="recipe" Type="nvarchar" MaxLength="50" />
+          <Property Name="total_num_wafer" Type="int" />
+          <Property Name="operator" Type="nvarchar" MaxLength="10" />
+          <Property Name="start_time" Type="datetime" Nullable="false" />
+          <Property Name="stop_time" Type="datetime" />
+          <Property Name="eq_comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsFinish" Type="bit" Nullable="false" />
+          <Property Name="tested_num_wafer" Type="int" />
+          <Property Name="wafer_id_in" Type="varchar" MaxLength="255" />
+          <Property Name="wafer_id_out" Type="varchar" MaxLength="255" />
+          <Property Name="over_drift" Type="float" />
+          <Property Name="over_drift_in" Type="float" />
+          <Property Name="over_drift_out" Type="float" />
+          <Property Name="sub_status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AmidaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AmidaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblEQHistory" EntityType="AmidaModel.tblEQHistory" />
+          <EntitySet Name="tblEQ" EntityType="AmidaModel.tblEQ" />
+        </EntityContainer>
+        <EntityType Name="tblEQHistory">
+          <Key>
+            <PropertyRef Name="identify" />
+          </Key>
+          <Property Name="identify" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eq_id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="lot_id" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="probe_card_id" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="recipe" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="total_num_wafer" Type="Int32" />
+          <Property Name="operator" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" />
+          <Property Name="stop_time" Type="DateTime" />
+          <Property Name="eq_comment" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsFinish" Type="Boolean" Nullable="false" />
+          <Property Name="tested_num_wafer" Type="Int32" />
+          <Property Name="wafer_id_in" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="wafer_id_out" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="over_drift" Type="Double" />
+          <Property Name="over_drift_in" Type="Double" />
+          <Property Name="over_drift_out" Type="Double" />
+          <Property Name="sub_status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblEQ">
+          <Key>
+            <PropertyRef Name="eqi_id" />
+          </Key>
+          <Property Type="String" Name="eqi_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="eq_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="eq_prober" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="eq_tester" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="eq_release_time" Nullable="false" />
+          <Property Type="String" Name="eq_comment" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="lot_id" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="probe_card_id" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="start_time" />
+          <Property Type="String" Name="recipe" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="operator" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="total_num_wafer" Nullable="false" />
+          <Property Type="String" Name="fab" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tested_num_wafer" Nullable="false" />
+          <Property Type="Int32" Name="total_num_chip" Nullable="false" />
+          <Property Type="Int32" Name="tested_num_chip" Nullable="false" />
+          <Property Type="String" Name="current_test_wafer_id" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IsWarnig" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int64" Name="current_identify" />
+          <Property Type="Int32" Name="expected_remain_time" />
+          <Property Type="Int32" Name="current_warning_identify" />
+          <Property Type="String" Name="eq_area" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="wafer_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="over_drift" />
+          <Property Type="String" Name="sub_status" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AmidaModelStoreContainer" CdmEntityContainer="AmidaEntities">
+          <EntitySetMapping Name="tblEQHistory"><EntityTypeMapping TypeName="AmidaModel.tblEQHistory"><MappingFragment StoreEntitySet="tblEQHistory">
+            <ScalarProperty Name="identify" ColumnName="identify" />
+            <ScalarProperty Name="eq_id" ColumnName="eq_id" />
+            <ScalarProperty Name="status" ColumnName="status" />
+            <ScalarProperty Name="lot_id" ColumnName="lot_id" />
+            <ScalarProperty Name="probe_card_id" ColumnName="probe_card_id" />
+            <ScalarProperty Name="recipe" ColumnName="recipe" />
+            <ScalarProperty Name="total_num_wafer" ColumnName="total_num_wafer" />
+            <ScalarProperty Name="operator" ColumnName="operator" />
+            <ScalarProperty Name="start_time" ColumnName="start_time" />
+            <ScalarProperty Name="stop_time" ColumnName="stop_time" />
+            <ScalarProperty Name="eq_comment" ColumnName="eq_comment" />
+            <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />
+            <ScalarProperty Name="tested_num_wafer" ColumnName="tested_num_wafer" />
+            <ScalarProperty Name="wafer_id_in" ColumnName="wafer_id_in" />
+            <ScalarProperty Name="wafer_id_out" ColumnName="wafer_id_out" />
+            <ScalarProperty Name="over_drift" ColumnName="over_drift" />
+            <ScalarProperty Name="over_drift_in" ColumnName="over_drift_in" />
+            <ScalarProperty Name="over_drift_out" ColumnName="over_drift_out" />
+            <ScalarProperty Name="sub_status" ColumnName="sub_status" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblEQ">
+            <EntityTypeMapping TypeName="AmidaModel.tblEQ">
+              <MappingFragment StoreEntitySet="tblEQ">
+                <ScalarProperty Name="sub_status" ColumnName="sub_status" />
+                <ScalarProperty Name="over_drift" ColumnName="over_drift" />
+                <ScalarProperty Name="wafer_id" ColumnName="wafer_id" />
+                <ScalarProperty Name="eq_area" ColumnName="eq_area" />
+                <ScalarProperty Name="current_warning_identify" ColumnName="current_warning_identify" />
+                <ScalarProperty Name="expected_remain_time" ColumnName="expected_remain_time" />
+                <ScalarProperty Name="current_identify" ColumnName="current_identify" />
+                <ScalarProperty Name="IsWarnig" ColumnName="IsWarnig" />
+                <ScalarProperty Name="current_test_wafer_id" ColumnName="current_test_wafer_id" />
+                <ScalarProperty Name="tested_num_chip" ColumnName="tested_num_chip" />
+                <ScalarProperty Name="total_num_chip" ColumnName="total_num_chip" />
+                <ScalarProperty Name="tested_num_wafer" ColumnName="tested_num_wafer" />
+                <ScalarProperty Name="fab" ColumnName="fab" />
+                <ScalarProperty Name="total_num_wafer" ColumnName="total_num_wafer" />
+                <ScalarProperty Name="operator" ColumnName="operator" />
+                <ScalarProperty Name="recipe" ColumnName="recipe" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="probe_card_id" ColumnName="probe_card_id" />
+                <ScalarProperty Name="lot_id" ColumnName="lot_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="eq_comment" ColumnName="eq_comment" />
+                <ScalarProperty Name="eq_release_time" ColumnName="eq_release_time" />
+                <ScalarProperty Name="eq_tester" ColumnName="eq_tester" />
+                <ScalarProperty Name="eq_prober" ColumnName="eq_prober" />
+                <ScalarProperty Name="eq_type" ColumnName="eq_type" />
+                <ScalarProperty Name="eqi_id" ColumnName="eqi_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="94">
+        <EntityTypeShape EntityType="AmidaModel.tblEQHistory" Width="1.5" PointX="0.75" PointY="0.75" Height="4.6725065104166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmidaModel.tblEQ" Width="1.5" PointX="3.375" PointY="0.75" Height="6.0186165364583317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

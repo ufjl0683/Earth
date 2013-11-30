@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet" targetNamespace="http://tempuri.org/DataSet.xsd" xmlns:mstns="http://tempuri.org/DataSet.xsd" xmlns="http://tempuri.org/DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet" msprop:Generator_UserDSName="DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="rptTouchDo" msprop:Generator_TableClassName="rptTouchDoDataTable" msprop:Generator_TableVarName="tablerptTouchDo" msprop:Generator_RowChangedName="rptTouchDoRowChanged" msprop:Generator_TablePropName="rptTouchDo" msprop:Generator_RowDeletingName="rptTouchDoRowDeleting" msprop:Generator_RowChangingName="rptTouchDoRowChanging" msprop:Generator_RowEvHandlerName="rptTouchDoRowChangeEventHandler" msprop:Generator_RowDeletedName="rptTouchDoRowDeleted" msprop:Generator_RowClassName="rptTouchDoRow" msprop:Generator_UserTableName="rptTouchDo" msprop:Generator_RowEvArgName="rptTouchDoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="XLabel" msprop:Generator_ColumnVarNameInTable="columnXLabel" msprop:Generator_ColumnPropNameInRow="XLabel" msprop:Generator_ColumnPropNameInTable="XLabelColumn" msprop:Generator_UserColumnName="XLabel" type="xs:string" minOccurs="0" />
+              <xs:element name="PCID" msprop:Generator_ColumnVarNameInTable="columnPCID" msprop:Generator_ColumnPropNameInRow="PCID" msprop:Generator_ColumnPropNameInTable="PCIDColumn" msprop:Generator_UserColumnName="PCID" type="xs:string" minOccurs="0" />
+              <xs:element name="Touch_Down_Total" msprop:Generator_ColumnVarNameInTable="columnTouch_Down_Total" msprop:Generator_ColumnPropNameInRow="Touch_Down_Total" msprop:Generator_ColumnPropNameInTable="Touch_Down_TotalColumn" msprop:Generator_UserColumnName="Touch_Down_Total" type="xs:long" minOccurs="0" />
+              <xs:element name="Pass_Total" msprop:Generator_ColumnVarNameInTable="columnPass_Total" msprop:Generator_ColumnPropNameInRow="Pass_Total" msprop:Generator_ColumnPropNameInTable="Pass_TotalColumn" msprop:Generator_UserColumnName="Pass_Total" type="xs:long" minOccurs="0" />
+              <xs:element name="Fail_Total" msprop:Generator_ColumnVarNameInTable="columnFail_Total" msprop:Generator_ColumnPropNameInRow="Fail_Total" msprop:Generator_ColumnPropNameInTable="Fail_TotalColumn" msprop:Generator_UserColumnName="Fail_Total" type="xs:long" minOccurs="0" />
+              <xs:element name="PC_Status" msprop:Generator_ColumnVarNameInTable="columnPC_Status" msprop:Generator_ColumnPropNameInRow="PC_Status" msprop:Generator_ColumnPropNameInTable="PC_StatusColumn" msprop:Generator_UserColumnName="PC_Status" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptPerformanceIndex" msprop:Generator_TableClassName="rptPerformanceIndexDataTable" msprop:Generator_TableVarName="tablerptPerformanceIndex" msprop:Generator_RowChangedName="rptPerformanceIndexRowChanged" msprop:Generator_TablePropName="rptPerformanceIndex" msprop:Generator_RowDeletingName="rptPerformanceIndexRowDeleting" msprop:Generator_RowChangingName="rptPerformanceIndexRowChanging" msprop:Generator_RowEvHandlerName="rptPerformanceIndexRowChangeEventHandler" msprop:Generator_RowDeletedName="rptPerformanceIndexRowDeleted" msprop:Generator_RowClassName="rptPerformanceIndexRow" msprop:Generator_UserTableName="rptPerformanceIndex" msprop:Generator_RowEvArgName="rptPerformanceIndexRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="XLabel" msprop:Generator_ColumnVarNameInTable="columnXLabel" msprop:Generator_ColumnPropNameInRow="XLabel" msprop:Generator_ColumnPropNameInTable="XLabelColumn" msprop:Generator_UserColumnName="XLabel" type="xs:string" minOccurs="0" />
+              <xs:element name="Operator" msdata:Caption="PCID" msprop:Generator_ColumnVarNameInTable="columnOperator" msprop:Generator_ColumnPropNameInRow="Operator" msprop:Generator_ColumnPropNameInTable="OperatorColumn" msprop:Generator_UserColumnName="Operator" type="xs:string" minOccurs="0" />
+              <xs:element name="ProductTotal" msdata:Caption="Touch_Down_Total" msprop:Generator_ColumnVarNameInTable="columnProductTotal" msprop:Generator_ColumnPropNameInRow="ProductTotal" msprop:Generator_ColumnPropNameInTable="ProductTotalColumn" msprop:Generator_UserColumnName="ProductTotal" type="xs:long" minOccurs="0" />
+              <xs:element name="VerifyTotal" msdata:Caption="Pass_Total" msprop:Generator_ColumnVarNameInTable="columnVerifyTotal" msprop:Generator_ColumnPropNameInRow="VerifyTotal" msprop:Generator_ColumnPropNameInTable="VerifyTotalColumn" msprop:Generator_UserColumnName="VerifyTotal" type="xs:long" minOccurs="0" />
+              <xs:element name="Total" msdata:Caption="Fail_Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptRCPProductivity" msprop:Generator_TableClassName="rptRCPProductivityDataTable" msprop:Generator_TableVarName="tablerptRCPProductivity" msprop:Generator_RowChangedName="rptRCPProductivityRowChanged" msprop:Generator_TablePropName="rptRCPProductivity" msprop:Generator_RowDeletingName="rptRCPProductivityRowDeleting" msprop:Generator_RowChangingName="rptRCPProductivityRowChanging" msprop:Generator_RowEvHandlerName="rptRCPProductivityRowChangeEventHandler" msprop:Generator_RowDeletedName="rptRCPProductivityRowDeleted" msprop:Generator_RowClassName="rptRCPProductivityRow" msprop:Generator_UserTableName="rptRCPProductivity" msprop:Generator_RowEvArgName="rptRCPProductivityRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="XLabel" msprop:Generator_ColumnVarNameInTable="columnXLabel" msprop:Generator_ColumnPropNameInRow="XLabel" msprop:Generator_ColumnPropNameInTable="XLabelColumn" msprop:Generator_UserColumnName="XLabel" type="xs:string" minOccurs="0" />
+              <xs:element name="RCP" msdata:Caption="PCID" msprop:Generator_ColumnVarNameInTable="columnRCP" msprop:Generator_ColumnPropNameInRow="RCP" msprop:Generator_ColumnPropNameInTable="RCPColumn" msprop:Generator_UserColumnName="RCP" type="xs:string" minOccurs="0" />
+              <xs:element name="TestVerify" msprop:Generator_ColumnVarNameInTable="columnTestVerify" msprop:Generator_ColumnPropNameInRow="TestVerify" msprop:Generator_ColumnPropNameInTable="TestVerifyColumn" msprop:Generator_UserColumnName="TestVerify" type="xs:string" minOccurs="0" />
+              <xs:element name="Number" msdata:Caption="Fail_Total" msprop:Generator_ColumnVarNameInTable="columnNumber" msprop:Generator_ColumnPropNameInRow="Number" msprop:Generator_ColumnPropNameInTable="NumberColumn" msprop:Generator_UserColumnName="Number" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptCurrentWIP" msprop:Generator_TableClassName="rptCurrentWIPDataTable" msprop:Generator_TableVarName="tablerptCurrentWIP" msprop:Generator_RowChangedName="rptCurrentWIPRowChanged" msprop:Generator_TablePropName="rptCurrentWIP" msprop:Generator_RowDeletingName="rptCurrentWIPRowDeleting" msprop:Generator_RowChangingName="rptCurrentWIPRowChanging" msprop:Generator_RowEvHandlerName="rptCurrentWIPRowChangeEventHandler" msprop:Generator_RowDeletedName="rptCurrentWIPRowDeleted" msprop:Generator_RowClassName="rptCurrentWIPRow" msprop:Generator_UserTableName="rptCurrentWIP" msprop:Generator_RowEvArgName="rptCurrentWIPRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaskID" msprop:Generator_ColumnVarNameInTable="columnMaskID" msprop:Generator_ColumnPropNameInRow="MaskID" msprop:Generator_ColumnPropNameInTable="MaskIDColumn" msprop:Generator_UserColumnName="MaskID" type="xs:string" minOccurs="0" />
+              <xs:element name="Processing" msprop:Generator_ColumnVarNameInTable="columnProcessing" msprop:Generator_ColumnPropNameInRow="Processing" msprop:Generator_ColumnPropNameInTable="ProcessingColumn" msprop:Generator_UserColumnName="Processing" type="xs:int" minOccurs="0" />
+              <xs:element name="Waiting" msprop:Generator_ColumnVarNameInTable="columnWaiting" msprop:Generator_ColumnPropNameInRow="Waiting" msprop:Generator_ColumnPropNameInTable="WaitingColumn" msprop:Generator_UserColumnName="Waiting" type="xs:int" minOccurs="0" />
+              <xs:element name="Hold1" msdata:Caption="Hold" msprop:Generator_ColumnVarNameInTable="columnHold1" msprop:Generator_ColumnPropNameInRow="Hold1" msprop:Generator_ColumnPropNameInTable="Hold1Column" msprop:Generator_UserColumnName="Hold1" type="xs:int" minOccurs="0" />
+              <xs:element name="Hold2" msprop:Generator_ColumnVarNameInTable="columnHold2" msprop:Generator_ColumnPropNameInRow="Hold2" msprop:Generator_ColumnPropNameInTable="Hold2Column" msprop:Generator_UserColumnName="Hold2" type="xs:int" minOccurs="0" />
+              <xs:element name="Hold3" msprop:Generator_ColumnVarNameInTable="columnHold3" msprop:Generator_ColumnPropNameInRow="Hold3" msprop:Generator_ColumnPropNameInTable="Hold3Column" msprop:Generator_UserColumnName="Hold3" type="xs:int" minOccurs="0" />
+              <xs:element name="Other" msprop:Generator_ColumnVarNameInTable="columnOther" msprop:Generator_ColumnPropNameInRow="Other" msprop:Generator_ColumnPropNameInTable="OtherColumn" msprop:Generator_UserColumnName="Other" type="xs:int" minOccurs="0" />
+              <xs:element name="Customer" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_UserColumnName="Customer" type="xs:string" minOccurs="0" />
+              <xs:element name="RFDC" msprop:Generator_ColumnVarNameInTable="columnRFDC" msprop:Generator_ColumnPropNameInRow="RFDC" msprop:Generator_ColumnPropNameInTable="RFDCColumn" msprop:Generator_UserColumnName="RFDC" type="xs:string" minOccurs="0" />
+              <xs:element name="PF" msprop:Generator_ColumnVarNameInTable="columnPF" msprop:Generator_ColumnPropNameInRow="PF" msprop:Generator_ColumnPropNameInTable="PFColumn" msprop:Generator_UserColumnName="PF" type="xs:string" minOccurs="0" />
+              <xs:element name="Sponsor" msprop:Generator_ColumnVarNameInTable="columnSponsor" msprop:Generator_ColumnPropNameInRow="Sponsor" msprop:Generator_ColumnPropNameInTable="SponsorColumn" msprop:Generator_UserColumnName="Sponsor" type="xs:string" minOccurs="0" />
+              <xs:element name="OnlineSingle" msprop:Generator_ColumnVarNameInTable="columnOnlineSingle" msprop:Generator_ColumnPropNameInRow="OnlineSingle" msprop:Generator_ColumnPropNameInTable="OnlineSingleColumn" msprop:Generator_UserColumnName="OnlineSingle" type="xs:int" minOccurs="0" />
+              <xs:element name="OnlineMulti" msprop:Generator_ColumnVarNameInTable="columnOnlineMulti" msprop:Generator_ColumnPropNameInRow="OnlineMulti" msprop:Generator_ColumnPropNameInTable="OnlineMultiColumn" msprop:Generator_UserColumnName="OnlineMulti" type="xs:int" minOccurs="0" />
+              <xs:element name="PEConfirmSingle" msprop:Generator_ColumnVarNameInTable="columnPEConfirmSingle" msprop:Generator_ColumnPropNameInRow="PEConfirmSingle" msprop:Generator_ColumnPropNameInTable="PEConfirmSingleColumn" msprop:Generator_UserColumnName="PEConfirmSingle" type="xs:int" minOccurs="0" />
+              <xs:element name="PEConfirmMulti" msprop:Generator_ColumnVarNameInTable="columnPEConfirmMulti" msprop:Generator_ColumnPropNameInRow="PEConfirmMulti" msprop:Generator_ColumnPropNameInTable="PEConfirmMultiColumn" msprop:Generator_UserColumnName="PEConfirmMulti" type="xs:int" minOccurs="0" />
+              <xs:element name="NewS" msprop:Generator_ColumnVarNameInTable="columnNewS" msprop:Generator_ColumnPropNameInRow="NewS" msprop:Generator_ColumnPropNameInTable="NewSColumn" msprop:Generator_UserColumnName="NewS" type="xs:int" minOccurs="0" />
+              <xs:element name="NewM" msprop:Generator_ColumnVarNameInTable="columnNewM" msprop:Generator_ColumnPropNameInRow="NewM" msprop:Generator_ColumnPropNameInTable="NewMColumn" msprop:Generator_UserColumnName="NewM" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptYieldVSOp" msprop:Generator_TableClassName="rptYieldVSOpDataTable" msprop:Generator_TableVarName="tablerptYieldVSOp" msprop:Generator_RowChangedName="rptYieldVSOpRowChanged" msprop:Generator_TablePropName="rptYieldVSOp" msprop:Generator_RowDeletingName="rptYieldVSOpRowDeleting" msprop:Generator_RowChangingName="rptYieldVSOpRowChanging" msprop:Generator_RowEvHandlerName="rptYieldVSOpRowChangeEventHandler" msprop:Generator_RowDeletedName="rptYieldVSOpRowDeleted" msprop:Generator_RowClassName="rptYieldVSOpRow" msprop:Generator_UserTableName="rptYieldVSOp" msprop:Generator_RowEvArgName="rptYieldVSOpRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Operator" msprop:Generator_ColumnVarNameInTable="columnOperator" msprop:Generator_ColumnPropNameInRow="Operator" msprop:Generator_ColumnPropNameInTable="OperatorColumn" msprop:Generator_UserColumnName="Operator" type="xs:string" minOccurs="0" />
+              <xs:element name="Max" msprop:Generator_ColumnVarNameInTable="columnMax" msprop:Generator_ColumnPropNameInRow="Max" msprop:Generator_ColumnPropNameInTable="MaxColumn" msprop:Generator_UserColumnName="Max" type="xs:double" minOccurs="0" />
+              <xs:element name="Min" msprop:Generator_ColumnVarNameInTable="columnMin" msprop:Generator_ColumnPropNameInRow="Min" msprop:Generator_ColumnPropNameInTable="MinColumn" msprop:Generator_UserColumnName="Min" type="xs:double" minOccurs="0" />
+              <xs:element name="Avg" msprop:Generator_ColumnVarNameInTable="columnAvg" msprop:Generator_ColumnPropNameInRow="Avg" msprop:Generator_ColumnPropNameInTable="AvgColumn" msprop:Generator_UserColumnName="Avg" type="xs:double" minOccurs="0" />
+              <xs:element name="Medium" msprop:Generator_ColumnVarNameInTable="columnMedium" msprop:Generator_ColumnPropNameInRow="Medium" msprop:Generator_ColumnPropNameInTable="MediumColumn" msprop:Generator_UserColumnName="Medium" type="xs:double" minOccurs="0" />
+              <xs:element name="XLabel" msprop:Generator_ColumnVarNameInTable="columnXLabel" msprop:Generator_ColumnPropNameInRow="XLabel" msprop:Generator_ColumnPropNameInTable="XLabelColumn" msprop:Generator_UserColumnName="XLabel" type="xs:string" minOccurs="0" />
+              <xs:element name="Count" msprop:Generator_ColumnVarNameInTable="columnCount" msprop:Generator_ColumnPropNameInRow="Count" msprop:Generator_ColumnPropNameInTable="CountColumn" msprop:Generator_UserColumnName="Count" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptRCPStatusIndex" msprop:Generator_TableClassName="rptRCPStatusIndexDataTable" msprop:Generator_TableVarName="tablerptRCPStatusIndex" msprop:Generator_RowChangedName="rptRCPStatusIndexRowChanged" msprop:Generator_TablePropName="rptRCPStatusIndex" msprop:Generator_RowDeletingName="rptRCPStatusIndexRowDeleting" msprop:Generator_RowChangingName="rptRCPStatusIndexRowChanging" msprop:Generator_RowEvHandlerName="rptRCPStatusIndexRowChangeEventHandler" msprop:Generator_RowDeletedName="rptRCPStatusIndexRowDeleted" msprop:Generator_RowClassName="rptRCPStatusIndexRow" msprop:Generator_UserTableName="rptRCPStatusIndex" msprop:Generator_RowEvArgName="rptRCPStatusIndexRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EQID" msprop:Generator_ColumnVarNameInTable="columnEQID" msprop:Generator_ColumnPropNameInRow="EQID" msprop:Generator_ColumnPropNameInTable="EQIDColumn" msprop:Generator_UserColumnName="EQID" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalTime" msprop:Generator_ColumnVarNameInTable="columnTotalTime" msprop:Generator_ColumnPropNameInRow="TotalTime" msprop:Generator_ColumnPropNameInTable="TotalTimeColumn" msprop:Generator_UserColumnName="TotalTime" type="xs:double" minOccurs="0" />
+              <xs:element name="EQType" msprop:Generator_ColumnVarNameInTable="columnEQType" msprop:Generator_ColumnPropNameInRow="EQType" msprop:Generator_ColumnPropNameInTable="EQTypeColumn" msprop:Generator_UserColumnName="EQType" type="xs:string" minOccurs="0" />
+              <xs:element name="TesterType" msprop:Generator_ColumnVarNameInTable="columnTesterType" msprop:Generator_ColumnPropNameInRow="TesterType" msprop:Generator_ColumnPropNameInTable="TesterTypeColumn" msprop:Generator_UserColumnName="TesterType" type="xs:string" minOccurs="0" />
+              <xs:element name="Area" msprop:Generator_ColumnVarNameInTable="columnArea" msprop:Generator_ColumnPropNameInRow="Area" msprop:Generator_ColumnPropNameInTable="AreaColumn" msprop:Generator_UserColumnName="Area" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptYieldVSRCP" msprop:Generator_TableClassName="rptYieldVSRCPDataTable" msprop:Generator_TableVarName="tablerptYieldVSRCP" msprop:Generator_RowChangedName="rptYieldVSRCPRowChanged" msprop:Generator_TablePropName="rptYieldVSRCP" msprop:Generator_RowDeletingName="rptYieldVSRCPRowDeleting" msprop:Generator_RowChangingName="rptYieldVSRCPRowChanging" msprop:Generator_RowEvHandlerName="rptYieldVSRCPRowChangeEventHandler" msprop:Generator_RowDeletedName="rptYieldVSRCPRowDeleted" msprop:Generator_RowClassName="rptYieldVSRCPRow" msprop:Generator_UserTableName="rptYieldVSRCP" msprop:Generator_RowEvArgName="rptYieldVSRCPRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RCP" msdata:Caption="Operator" msprop:Generator_ColumnVarNameInTable="columnRCP" msprop:Generator_ColumnPropNameInRow="RCP" msprop:Generator_ColumnPropNameInTable="RCPColumn" msprop:Generator_UserColumnName="RCP" type="xs:string" minOccurs="0" />
+              <xs:element name="Max" msprop:Generator_ColumnVarNameInTable="columnMax" msprop:Generator_ColumnPropNameInRow="Max" msprop:Generator_ColumnPropNameInTable="MaxColumn" msprop:Generator_UserColumnName="Max" type="xs:double" minOccurs="0" />
+              <xs:element name="Min" msprop:Generator_ColumnVarNameInTable="columnMin" msprop:Generator_ColumnPropNameInRow="Min" msprop:Generator_ColumnPropNameInTable="MinColumn" msprop:Generator_UserColumnName="Min" type="xs:double" minOccurs="0" />
+              <xs:element name="Avg" msprop:Generator_ColumnVarNameInTable="columnAvg" msprop:Generator_ColumnPropNameInRow="Avg" msprop:Generator_ColumnPropNameInTable="AvgColumn" msprop:Generator_UserColumnName="Avg" type="xs:double" minOccurs="0" />
+              <xs:element name="Medium" msprop:Generator_ColumnVarNameInTable="columnMedium" msprop:Generator_ColumnPropNameInRow="Medium" msprop:Generator_ColumnPropNameInTable="MediumColumn" msprop:Generator_UserColumnName="Medium" type="xs:double" minOccurs="0" />
+              <xs:element name="XLabel" msprop:Generator_ColumnVarNameInTable="columnXLabel" msprop:Generator_ColumnPropNameInRow="XLabel" msprop:Generator_ColumnPropNameInTable="XLabelColumn" msprop:Generator_UserColumnName="XLabel" type="xs:string" minOccurs="0" />
+              <xs:element name="Count" msprop:Generator_ColumnVarNameInTable="columnCount" msprop:Generator_ColumnPropNameInRow="Count" msprop:Generator_ColumnPropNameInTable="CountColumn" msprop:Generator_UserColumnName="Count" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rptYieldVSPC" msprop:Generator_TableClassName="rptYieldVSPCDataTable" msprop:Generator_TableVarName="tablerptYieldVSPC" msprop:Generator_RowChangedName="rptYieldVSPCRowChanged" msprop:Generator_TablePropName="rptYieldVSPC" msprop:Generator_RowDeletingName="rptYieldVSPCRowDeleting" msprop:Generator_RowChangingName="rptYieldVSPCRowChanging" msprop:Generator_RowEvHandlerName="rptYieldVSPCRowChangeEventHandler" msprop:Generator_RowDeletedName="rptYieldVSPCRowDeleted" msprop:Generator_RowClassName="rptYieldVSPCRow" msprop:Generator_UserTableName="rptYieldVSPC" msprop:Generator_RowEvArgName="rptYieldVSPCRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PCID" msdata:Caption="Operator" msprop:Generator_ColumnVarNameInTable="columnPCID" msprop:Generator_ColumnPropNameInRow="PCID" msprop:Generator_ColumnPropNameInTable="PCIDColumn" msprop:Generator_UserColumnName="PCID" type="xs:string" minOccurs="0" />
+              <xs:element name="Max" msprop:Generator_ColumnVarNameInTable="columnMax" msprop:Generator_ColumnPropNameInRow="Max" msprop:Generator_ColumnPropNameInTable="MaxColumn" msprop:Generator_UserColumnName="Max" type="xs:double" minOccurs="0" />
+              <xs:element name="Min" msprop:Generator_ColumnVarNameInTable="columnMin" msprop:Generator_ColumnPropNameInRow="Min" msprop:Generator_ColumnPropNameInTable="MinColumn" msprop:Generator_UserColumnName="Min" type="xs:double" minOccurs="0" />
+              <xs:element name="Avg" msprop:Generator_ColumnVarNameInTable="columnAvg" msprop:Generator_ColumnPropNameInRow="Avg" msprop:Generator_ColumnPropNameInTable="AvgColumn" msprop:Generator_UserColumnName="Avg" type="xs:double" minOccurs="0" />
+              <xs:element name="Medium" msprop:Generator_ColumnVarNameInTable="columnMedium" msprop:Generator_ColumnPropNameInRow="Medium" msprop:Generator_ColumnPropNameInTable="MediumColumn" msprop:Generator_UserColumnName="Medium" type="xs:double" minOccurs="0" />
+              <xs:element name="XLabel" msprop:Generator_ColumnVarNameInTable="columnXLabel" msprop:Generator_ColumnPropNameInRow="XLabel" msprop:Generator_ColumnPropNameInTable="XLabelColumn" msprop:Generator_UserColumnName="XLabel" type="xs:string" minOccurs="0" />
+              <xs:element name="Count" msprop:Generator_ColumnVarNameInTable="columnCount" msprop:Generator_ColumnPropNameInRow="Count" msprop:Generator_ColumnPropNameInTable="CountColumn" msprop:Generator_UserColumnName="Count" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

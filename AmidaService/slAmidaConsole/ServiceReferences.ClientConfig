@@ -1,0 +1,27 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="WebServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+            <customBinding>
+                <binding name="CustomBinding_IAmidaService">
+                    <binaryMessageEncoding />
+                    <tcpTransport maxReceivedMessageSize="2147483647" channelInitializationTimeout="00:00:30"
+                        maxBufferSize="2147483647" maxPendingConnections="0" maxPendingAccepts="0"
+                        listenBacklog="0" />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://127.0.0.1:54496/WebService.asmx" binding="basicHttpBinding"
+                bindingConfiguration="WebServiceSoap" contract="WebService.WebServiceSoap"
+                name="WebServiceSoap" />
+            <endpoint address="net.tcp://localhost:4502/" binding="customBinding"
+                bindingConfiguration="CustomBinding_IAmidaService" contract="AmidaService.IAmidaService"
+                name="CustomBinding_IAmidaService" />
+        </client>
+    </system.serviceModel>
+</configuration>

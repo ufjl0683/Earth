@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://winfoundry.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://winfoundry.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://winfoundry.com/">
+      <s:element name="PMS_MainService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Para" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMS_MainServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PMS_MainServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMS_MainService_File">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Para" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileByte" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMS_MainService_FileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PMS_MainService_FileResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileByte" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PMS_MainServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:PMS_MainService" />
+  </wsdl:message>
+  <wsdl:message name="PMS_MainServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:PMS_MainServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="PMS_MainService_FileSoapIn">
+    <wsdl:part name="parameters" element="tns:PMS_MainService_File" />
+  </wsdl:message>
+  <wsdl:message name="PMS_MainService_FileSoapOut">
+    <wsdl:part name="parameters" element="tns:PMS_MainService_FileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WINServiceSoap">
+    <wsdl:operation name="PMS_MainService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AAA</wsdl:documentation>
+      <wsdl:input message="tns:PMS_MainServiceSoapIn" />
+      <wsdl:output message="tns:PMS_MainServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PMS_MainService_File">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BBB</wsdl:documentation>
+      <wsdl:input message="tns:PMS_MainService_FileSoapIn" />
+      <wsdl:output message="tns:PMS_MainService_FileSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WINServiceSoap" type="tns:WINServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PMS_MainService">
+      <soap:operation soapAction="http://winfoundry.com/PMS_MainService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMS_MainService_File">
+      <soap:operation soapAction="http://winfoundry.com/PMS_MainService_File" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WINServiceSoap12" type="tns:WINServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PMS_MainService">
+      <soap12:operation soapAction="http://winfoundry.com/PMS_MainService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMS_MainService_File">
+      <soap12:operation soapAction="http://winfoundry.com/PMS_MainService_File" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WINService">
+    <wsdl:port name="WINServiceSoap" binding="tns:WINServiceSoap">
+      <soap:address location="http://10.1.100.12:8888/PMS_WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WINServiceSoap12" binding="tns:WINServiceSoap12">
+      <soap12:address location="http://10.1.100.12:8888/PMS_WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

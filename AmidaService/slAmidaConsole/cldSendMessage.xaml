@@ -1,0 +1,42 @@
+﻿<controls:ChildWindow x:Class="slAmidaConsole.cldSendMessage"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           Width="504" Height="391" 
+           Title="cldSendMessage" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="CancelButton" Content="取消" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="確定" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+        <ListBox  ItemsSource="{Binding}" Height="280" HorizontalAlignment="Left" Margin="6,25,0,0" Name="listBox1" VerticalAlignment="Top" Width="118" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding PcName}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Height="18" HorizontalAlignment="Left" Margin="10,5,0,0" Name="textBlock1" Text="To:" VerticalAlignment="Top" Width="67" />
+        <RadioButton Content="next lot" Height="23" HorizontalAlignment="Left" Margin="139,5,0,0" Name="optNextLot" VerticalAlignment="Top" Width="112" IsChecked="True" />
+        <sdk:DataGrid AutoGenerateColumns="False" Height="143" HorizontalAlignment="Left" Margin="138,30,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="307" FlowDirection="LeftToRight" />
+        <TextBlock TextAlignment="Right"  Height="23" HorizontalAlignment="Left" Margin="147,44,0,0" Name="textBlock2" Text="Mask:" VerticalAlignment="Top" Width="62" FlowDirection="LeftToRight" />
+        <TextBlock TextAlignment="Right"  HorizontalAlignment="Left" Margin="157,65,0,0" Name="textBlock3" Text="Lot:" Width="52" Height="23" VerticalAlignment="Top" FlowDirection="LeftToRight" />
+        <TextBlock TextAlignment="Right" Height="23" HorizontalAlignment="Left" Margin="142,84,0,0" Name="textBlock4" Text="Wafer:" VerticalAlignment="Top" Width="67" FlowDirection="LeftToRight" />
+        <TextBlock TextAlignment="Right"  Height="23" HorizontalAlignment="Left" Margin="161,105,0,0" Name="textBlock5" Text="PC:" VerticalAlignment="Top" Width="48" FlowDirection="LeftToRight" />
+        <TextBlock TextAlignment="Right"   HorizontalAlignment="Left" Margin="141,127,0,0" Name="textBlock6" Text="Shape:" Width="68" Height="23" VerticalAlignment="Top" FlowDirection="LeftToRight" />
+        <TextBlock TextAlignment="Right"   Height="23" HorizontalAlignment="Left" Margin="142,150,0,0" Name="textBlock7" Text="Test/Verify:" VerticalAlignment="Top" Width="67" FlowDirection="LeftToRight" />
+        <TextBox Height="22" HorizontalAlignment="Left" Margin="221,39,0,0" Name="txtMask" VerticalAlignment="Top" Width="109" GotFocus="txtTestVerify_GotFocus" />
+        <TextBox Height="22" HorizontalAlignment="Left" Margin="221,61,0,0" Name="txtLot" VerticalAlignment="Top" Width="109" GotFocus="txtTestVerify_GotFocus" />
+        <TextBox Height="22" HorizontalAlignment="Left" Margin="221,84,0,0" Name="txtWafer" VerticalAlignment="Top" Width="109" GotFocus="txtTestVerify_GotFocus" />
+        <TextBox Height="22" HorizontalAlignment="Left" Margin="221,106,0,0" Name="txtPC" VerticalAlignment="Top" Width="109" GotFocus="txtTestVerify_GotFocus" />
+        <TextBox Height="22" HorizontalAlignment="Left" Margin="221,128,0,0" Name="txtShape" VerticalAlignment="Top" Width="109" GotFocus="txtTestVerify_GotFocus" />
+        <RadioButton Content="others" Height="23" HorizontalAlignment="Left" Margin="138,179,0,0" Name="optOthers" VerticalAlignment="Top" Width="112" />
+        <TextBox Height="104" HorizontalAlignment="Left" Margin="140,207,0,0" Name="txtOthers" VerticalAlignment="Top" Width="330" TextWrapping="Wrap" AcceptsReturn="True" GotFocus="txtOthers_GotFocus" />
+        <sdk:AutoCompleteBox Height="22" HorizontalAlignment="Left" Margin="221,151,0,0" Name="txtTestVerify" VerticalAlignment="Top" Width="109" GotFocus="txtTestVerify_GotFocus">
+             
+        </sdk:AutoCompleteBox>
+    </Grid>
+</controls:ChildWindow>

@@ -1,0 +1,35 @@
+﻿<navigation:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:local="clr-namespace:slAmidaConsole"  x:Class="slAmidaConsole.Page1"
+           mc:Ignorable="d"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Page1 Page">
+    <Grid x:Name="LayoutRoot">
+    	<Button x:Name="sleep" Content="sleep" FontSize="8" Click="sleep_Click" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="26" />
+    	<Button x:Name="testting" Content="testting" Margin="26,0,0,0" FontSize="8" Click="testting_Click" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="37" />
+    	<Button x:Name="damage" Content="damage" Margin="63,0,0,0" FontSize="8" Click="damage_Click" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="40" />
+    	<Button Content="Fax" x:Name="fax" Click="fax_Click" FontSize="8" Margin="103,0,0,0" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="25" d:LayoutOverrides="GridBox" />
+    	<Button x:Name="pause" Content="pause" Click="pause_Click" FontSize="8" Margin="26,157,0,0" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="85" d:LayoutOverrides="GridBox" />
+
+    	<local:Wafer Margin="0,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="wafer" Width="120" Height="130" RenderTransformOrigin="0.5,0.5" >
+    		<local:Wafer.RenderTransform>
+    			<CompositeTransform ScaleX="0.5" ScaleY="0.5"/>
+    		</local:Wafer.RenderTransform>
+    	</local:Wafer>
+        <Button Content="Button" Height="31" HorizontalAlignment="Left" Margin="227,165,0,0" Name="button1" VerticalAlignment="Top" Width="68" Click="button1_Click" />
+        <Button Content="Button" Height="31" HorizontalAlignment="Left" Margin="312,165,0,0" Name="button2" VerticalAlignment="Top" Width="68" Click="button2_Click" />
+        <ListBox Height="201" HorizontalAlignment="Left" Margin="408,35,0,0" Name="listBox1" VerticalAlignment="Top" Width="189" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <local:Wafer Loaded="Wafer_Loaded_1" ></local:Wafer>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</navigation:Page>

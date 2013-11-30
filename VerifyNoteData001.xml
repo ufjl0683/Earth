@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<VerifyNoteData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Fail>0</Fail>
+  <MAP>map</MAP>
+  <Operators>operators</Operators>
+  <PCID>pcid</PCID>
+  <Pass>100</Pass>
+  <RCP>RCP</RCP>
+  <StartTimes>2012-01-23T17:09:16</StartTimes>
+  <StopTimes>2012-01-23T17:09:16</StopTimes>
+  <TPS>tps</TPS>
+  <TestVerify>testverify</TestVerify>
+  <TestVerifyDate>2012-01-23T17:29:16</TestVerifyDate>
+  <TouchDo>1234</TouchDo>
+  <WaferID>waferid</WaferID>
+</VerifyNoteData>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AmidaServerService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AmidaServerService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfRegisterDeviceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RegisterDeviceInfo" nillable="true" type="tns:RegisterDeviceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegisterDeviceInfo" nillable="true" type="tns:ArrayOfRegisterDeviceInfo" />
+  <xs:complexType name="RegisterDeviceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConnectedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CurrentWaferId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PcName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProbeCardId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Progress" type="xs:double" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusBeginTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimeRemain" type="xs:double" />
+      <xs:element minOccurs="0" name="WarningBeginTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WarningMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WarningType" type="xs:int" />
+      <xs:element minOccurs="0" name="eq_area" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="eq_comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="eq_prober" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="eq_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lot_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tested_num_chip" type="xs:int" />
+      <xs:element minOccurs="0" name="tested_num_wafer" type="xs:int" />
+      <xs:element minOccurs="0" name="total_num_chip" type="xs:int" />
+      <xs:element minOccurs="0" name="total_num_wafer" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisterDeviceInfo" nillable="true" type="tns:RegisterDeviceInfo" />
+  <xs:simpleType name="InportCmdType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InportFile" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InportCmdType" nillable="true" type="tns:InportCmdType" />
+</xs:schema>

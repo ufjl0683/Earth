@@ -1,0 +1,37 @@
+﻿<navigation:Page x:Class="slDBManager.Report.YieldLv2" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+                  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           Title="YieldLv2 Page">
+    <UserControl.Resources>
+        <ItemsPanelTemplate  x:Key="ItemsPanelTemplate1">
+            <toolkit:WrapPanel Loaded="wrapPanel_Loaded"   x:Name="wrapPanel"/>
+        </ItemsPanelTemplate>
+        <Style x:Key="ButtonStyle1" TargetType="HyperlinkButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HyperlinkButton">
+                        <Grid  >
+                            <Image Margin="0" Stretch="UniformToFill"  HorizontalAlignment="Stretch" VerticalAlignment="Top"  Source="{Binding ImgPath}" Height="124"   />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="DataTemplate1">
+            <Grid Width="251" Height="164" Margin="20,20,20,20" >
+                <HyperlinkButton  NavigateUri="{Binding Url}" Width="251" Style="{StaticResource ButtonStyle1}" Height="144" Margin="0,0,0,33"/>
+                <TextBlock Height="20" Margin="0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="Auto" FontSize="16"   />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="White" Loaded="LayoutRoot_Loaded"  >
+        <ListBox Margin="45,49,44,54" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ItemTemplate="{StaticResource DataTemplate1}" Name="lstMenu" SizeChanged="lstMenu_SizeChanged" />
+    </Grid>
+</navigation:Page>

@@ -1,0 +1,85 @@
+﻿<nav:Page x:Class="slDBManager.DbForms.tblEQ"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:nav="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:local="clr-namespace:slDBManager"
+     mc:Ignorable="d"
+    d:DesignHeight="376" d:DesignWidth="528" xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" xmlns:my="clr-namespace:slAmidaConsole.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"    >
+    <nav:Page.Resources>
+        <local:StandardTimeConveter x:Key="StandardTimeConveter" />
+    </nav:Page.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" Loaded="LayoutRoot_Loaded" Style="{x:Null}"  >
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="24,16,0,0" TextWrapping="Wrap" Text="EQID:" VerticalAlignment="Top" Width="48" FontSize="14"/>
+        <TextBox x:Name="txtEQID" Height="24" Margin="80,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96" TextChanged="txtEQID_TextChanged" />
+        <sdk:DataGrid AutoGenerateColumns="false" Margin="12,45,12,12" Name="dataGrid1" FrozenColumnCount="1" IsReadOnly="False">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eqi_id,Mode=TwoWay}" CanUserResize="True" CanUserSort="True" Header="EQID" Width="Auto" Foreground="Brown" />
+                <sdk:DataGridTemplateColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Header="fab" Width="Auto"   DisplayIndex="1">
+                    <sdk:DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ComboBox SelectedValue="{Binding fab,Mode=TwoWay}"    >
+                                    <ComboBox.Items>
+                                        <sys:String>FAB-1</sys:String>
+                                        <sys:String>FAB-2</sys:String>
+                                        <sys:String>FAB-3</sys:String>
+                                    </ComboBox.Items>
+                                </ComboBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellEditingTemplate>
+                </sdk:DataGridTemplateColumn>
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding IsWarning}" CanUserResize="True" CanUserSort="True" Header="IsWarning" Width="Auto"  IsReadOnly="True" Foreground="Brown" />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding status}" CanUserResize="True" CanUserSort="True" Header="Status" Width="Auto"   IsReadOnly="True"  Foreground="Brown" />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eq_comment}" CanUserResize="True" CanUserSort="True" Header="eq_comment" Width="Auto"   />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eq_prober}" CanUserResize="True" CanUserSort="True" Header="eq_prober" Width="Auto"   />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eq_release_time,Converter={StaticResource StandardTimeConveter}}" CanUserResize="True" CanUserSort="True" Header="eq_release_time" Width="Auto" IsReadOnly="True" Foreground="Brown"  />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eq_tester}" CanUserResize="True" CanUserSort="True" Header="eq_tester" Width="Auto"   />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eq_type}" CanUserResize="True" CanUserSort="True" Header="eq_type" Width="Auto" IsReadOnly="False"  />
+                <sdk:DataGridTextColumn CanUserReorder="True" Binding="{Binding eq_area}" CanUserResize="True" CanUserSort="True" Header="eq_area" Width="Auto" IsReadOnly="False"  />
+                <!--<sdk:DataGridTemplateColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Header="IsWarning" Width="Auto"   DisplayIndex="2">
+                    <sdk:DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ComboBox SelectedValue="{Binding IsWarnig,Mode=TwoWay}"    >
+                                    <ComboBox.Items>
+                                        <sys:String>Y</sys:String>
+                                        <sys:String>N</sys:String>
+                                      
+                                    </ComboBox.Items>
+                                </ComboBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellEditingTemplate>-->
+                <!--</sdk:DataGridTemplateColumn>-->
+                <!--<sdk:DataGridTemplateColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Header="Status" Width="Auto"   DisplayIndex="3">
+                    <sdk:DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ComboBox SelectedValue="{Binding status,Mode=TwoWay}"    >
+                                    <ComboBox.Items>
+                                        <sys:String>Product</sys:String>
+                                        <sys:String>Verify</sys:String>
+                                        <sys:String>Idle</sys:String>
+                                        <sys:String>LEM</sys:String>
+
+                                    </ComboBox.Items>
+                                </ComboBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellEditingTemplate>
+                </sdk:DataGridTemplateColumn>-->
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button Content="Save" Height="29" Margin="0,11,93,0" Name="button1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="button1_Click" />
+        <Button Content="Restore" Height="29" Margin="0,12,12,0" Name="button2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="button2_Click" />
+        <!--<riaControls:DomainDataSource AutoLoad="True" d:DesignData="{d:DesignInstance my:tblEQ, CreateList=true}" Height="0" LoadedData="tblEQDomainDataSource_LoadedData" Name="tblEQDomainDataSource" QueryName="GetTblEQQuery" Width="0">
+            <riaControls:DomainDataSource.DomainContext>
+                <my:EQ_DomainContext />
+            </riaControls:DomainDataSource.DomainContext>
+        </riaControls:DomainDataSource>-->
+    </Grid>
+</nav:Page>

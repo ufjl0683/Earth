@@ -1,0 +1,3 @@
+﻿2012-9-8 Add tblVerifyTimeLog,tblVerifyTimeRef,trigger on tblVerifyNote for Insert ---done
+
+2012-9-18 modify [dbo].[tblVerifyNoteInsertTrigger] at last line =>  update tblVerifyTimeRef set [Minutes]=@AVGMin where MaskID=@MaskID;

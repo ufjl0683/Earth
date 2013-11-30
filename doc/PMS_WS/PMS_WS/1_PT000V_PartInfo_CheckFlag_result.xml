@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<RES>
+<FUNCTION>PT000V_PartInfo</FUNCTION>
+<ELE NAME="CheckFlag">
+<ATTR NAME="ROUTE_ID">
+PRECA3UONN.00</ATTR>
+<ATTR NAME="OPE_NO">
+810.0300</ATTR>
+<ATTR NAME="CheckType">
+checkDC</ATTR>
+<ROW>
+<COL>0</COL>
+</ROW>
+</ELE>
+</RES>
+

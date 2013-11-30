@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<RES>
+<FUNCTION>PT002V_PartTrackIn</FUNCTION>
+<ELE NAME="ERROR">
+<ATTR NAME="CODE">A111</ATTR>
+<ATTR NAME="MESSAGE">
+PS_OpStartReq  : EQP State not current. (10206)
+</ATTR>
+</ELE>
+</RES>
+
