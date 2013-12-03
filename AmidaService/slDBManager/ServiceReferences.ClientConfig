@@ -20,10 +20,10 @@
             <endpoint address="net.tcp://127.0.0.1:4502/" binding="customBinding"
                 bindingConfiguration="CustomBinding_IAmidaService" contract="AmidaService.IAmidaService"
                 name="CustomBinding_IAmidaService" />-->
-          <endpoint address="http://10.3.231.140/pcmsqltest/WebService.asmx" binding="basicHttpBinding"
+          <endpoint address="http://10.14.2.18/pcmsqltest/WebService.asmx" binding="basicHttpBinding"
                bindingConfiguration="WebServiceSoap" contract="WebService.WebServiceSoap"
                name="WebServiceSoap" />
-          <endpoint address="net.tcp://10.3.231.140:4502/" binding="customBinding"
+          <endpoint address="net.tcp://10.14.2.18:4502/" binding="customBinding"
               bindingConfiguration="CustomBinding_IAmidaService" contract="AmidaService.IAmidaService"
               name="CustomBinding_IAmidaService" />
         </client>

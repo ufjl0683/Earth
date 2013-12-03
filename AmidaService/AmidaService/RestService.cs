@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -84,6 +85,145 @@ namespace AmidaServerService
             {
                 return new ConfigInfo() { ErrorMessage = ex.Message + "," + ex.StackTrace };
             }
+        }
+
+        public string AutoPMS(string INOUT, string OPID, string PARTID, string EQPID, string OPENO, string SM, string WAFER)
+        {
+            string partid="";
+           // if(SM=='S")
+
+            
+                   string feedfilename = Guid.NewGuid().ToString() + ".txt";
+            try
+            {
+                if (SM == "S")
+                {
+                    string[] temps = PARTID.Split(new char[] { '-' });
+                    string part0 = temps[0].Substring(0, 5);
+                    string part1 = "";
+                    if (char.IsLetter(temps[1][0]))  // is letter
+                        part1 = temps[1].Substring(0, 4);
+                    else
+                        part1 = "-" + temps[1].Substring(0, 3);
+
+                    partid = part0 + part1 + "-" + WAFER;
+                }
+                else if (SM == "M")
+                {
+                    string[] temps = PARTID.Split(new char[] { '-' });
+                    string part0 = temps[0].Substring(0, 5);
+                    string part1 = char.IsLetter(temps[1].Split(new char[] { 'W' })[0][0]) ? temps[1].Split(new char[] { 'W' })[0].Substring(0, 4) : "-"+temps[1].Split(new char[] { 'W' })[0].Substring(0, 3);
+
+                    partid = part0 + part1 + "-"+temps[1].Split(new char[] { 'W' })[1];
+
+                }
+                else
+                    throw new Exception("unknow SM:" + SM);
+                
+            //    string[] temps = PARTID.Split(new char[] { '-' });
+               // string partid = temps[0].Substring(0, 5) + temps[1] + "." + temps[2];
+
+                Console.WriteLine("AutoPMS:{0},{1},{2},{3},{4}", INOUT, OPID, partid, EQPID, OPENO);
+                //###############################
+                 return partid;
+                //####################
+                System.Diagnostics.Process process;
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + "AutoPms\\" + feedfilename));
+                sw.Write(OPID + " " + partid + " " + EQPID + " " + OPENO);
+                sw.Close();
+                process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\AutoPMS.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoPms\\" + feedfilename);
+
+                if (!process.WaitForExit(3000))
+                    return "Fail:Timeout";
+
+                if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\" + feedfilename + ".out"))
+                    return "Fail:output file not found!";
+                System.IO.StreamReader sr = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\" + feedfilename + ".out");
+                string res = sr.ReadLine();
+                sr.Close();
+                if (!res.StartsWith("[0000000I:"))
+                    return "Fail:" + res;
+
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return "Fail:" + ex.Message;
+            }
+            finally
+            {
+                try
+                {
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename);
+                }
+                catch { ;}
+
+
+                try
+                {
+
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out");
+                }
+                catch { ;}
+            }
+         //   throw new NotImplementedException();
+        }
+        public string AutoMES(string INOUT, string OPID, string PARTID, string EQPID, string OPENO)
+        {
+
+
+            string feedfilename = Guid.NewGuid().ToString() + ".txt";
+            try
+            {
+
+                string[] temps = PARTID.Split(new char[] { '-' });
+                string partid = temps[0].Substring(0, 5) + temps[1] + "." + temps[2];
+
+                Console.WriteLine("AutoMes:{0},{1},{2},{3},{4}", INOUT, OPID, partid, EQPID, OPENO);
+                System.Diagnostics.Process process;
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename));
+                sw.Write(OPID + " " + partid + " " + EQPID + " " + OPENO);
+                sw.Close();
+                process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\AutoMES.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename);
+
+                if (!process.WaitForExit(3000))
+                    return "Fail:Timeout";
+
+                if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out"))
+                    return "Fail:output file not found!";
+                System.IO.StreamReader sr = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out");
+                string res = sr.ReadLine();
+                sr.Close();
+                if (!res.StartsWith("[0000000I:"))
+                    return "Fail:" + res;
+
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return "Fail:" + ex.Message;
+            }
+            finally
+            {
+                try
+                {
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename);
+                }
+                catch { ;}
+
+
+                try
+                {
+
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out");
+                }
+                catch { ;}
+            }
+
+
+           // throw new NotImplementedException();
         }
     }
 

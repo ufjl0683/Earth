@@ -48,7 +48,7 @@ namespace test
         //Console.WriteLine(xml);
            // SetTrackIn("AP428P326-06", "Multi-AP428-200","LAD-1");
      //       SetCompleted("AH770P102-05");
-          string res=  AutoMes("IN", "aa", "AS370-1.000", "trk-07", "190.0300");
+          string res=  AutoMes("IN","aa","AS370-1.000","trk-07", "190.0300");
           Console.WriteLine(res);
             Console.ReadKey();
         }
