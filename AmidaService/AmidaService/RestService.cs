@@ -125,7 +125,7 @@ namespace AmidaServerService
 
                 Console.WriteLine("AutoPMS:{0},{1},{2},{3},{4}", INOUT, OPID, partid, EQPID, OPENO);
                 //###############################
-                 return partid;
+               //  return partid;
                 //####################
                 System.Diagnostics.Process process;
 

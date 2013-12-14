@@ -54,7 +54,7 @@ namespace slAmidaConsole.Web.PMS
                     ProductID = cols[0].Value.ToString().Trim(),
                     Status = cols[2].Value.ToString().Trim(),
                     Ope = cols[5].Value.ToString().Trim(),
-                  //  PF=cols[11].Value.ToString().Trim()
+                    PF=cols[11].Value.ToString().Trim()
                 });
             }
 

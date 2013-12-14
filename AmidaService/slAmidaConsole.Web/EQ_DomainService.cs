@@ -613,21 +613,23 @@ namespace slAmidaConsole.Web
                                       PEConfirmSingle = g.Count(k => k.WIP_STATUS == "PS"),
                                       PEConfirmMulti = g.Count(k => k.WIP_STATUS == "PM"),
                                       NewS = g.Count(k => k.WIP_STATUS == "NS"),
-                                      NewM = g.Count(k => k.WIP_STATUS == "NM")
+                                      NewM = g.Count(k => k.WIP_STATUS == "NM"),
+                                     
                                   };
 
             var q = from n in data
 
                     where n.Status.Trim() != ""
-                    group n by n.MaskID into g
-                    join m in PC_WIPStatusCnt.ToList() on g.Key equals m.MaskID into gp
+                    group n by new { n.MaskID, n.PF } into g
+                    join m in PC_WIPStatusCnt.ToList() on g.Key.MaskID equals m.MaskID into gp
 
                     from k in gp.DefaultIfEmpty()
 
                     select new RptSchema.rptCurrentWIPSchema()
                     {
-                        MaskID = g.Key,
-                        Processing = g.Where(p => p.Status.Trim() == "Processing").Count(),
+                        MaskID = g.Key.MaskID,
+                        PF=g.Key.PF,
+                        Processing = g.Where(p => p.Status.Trim() == "Processing"  ).Count(),
                         Waiting = g.Where(p => p.Status.Trim() == "Waiting").Count(),
                         Hold1 = g.Where(p => p.Status.Trim() == "Hold" && (p.Ope == "450.0030" || p.Ope == "780.0150")).Count(),
                         Hold2 = g.Where(p => p.Status.Trim() == "Hold" && (p.Ope == "450.0040" || p.Ope == "780.0200")).Count(),
@@ -639,6 +641,7 @@ namespace slAmidaConsole.Web
                         PEConfirmMulti = k == null ? 0 : k.PEConfirmMulti,
                         NewS = k == null ? 0 : k.NewS,
                         NewM = k == null ? 0 : k.NewM
+
                     };
 
 
@@ -664,7 +667,7 @@ namespace slAmidaConsole.Web
                 tblMaskInfo minfo = ObjectContext.tblMaskInfo.FirstOrDefault(n => n.MaskID == item.MaskID);
                 if (minfo != null)
                 {
-                    item.PF = minfo.PF;
+                   // item.PF = minfo.PF;
                     item.RFDC = minfo.RFDC;
                     item.Sponsor = minfo.Sponsor;
                     item.Customer = minfo.Customer;

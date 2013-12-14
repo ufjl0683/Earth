@@ -412,23 +412,25 @@ namespace slAmidaConsole.Web
            var q = from n in data
 
                    where n.Status.Trim() != ""
-                   group n by n.MaskID into g   join  m in PC_WIPStatusCnt.ToList() on g.Key equals m.MaskID  into gp 
+                   group n by new { n.MaskID, n.PF } into g
+                   join m in PC_WIPStatusCnt.ToList() on g.Key.MaskID equals m.MaskID into gp
 
                    from k in gp.DefaultIfEmpty()
 
                    select new RptSchema.rptCurrentWIPSchema()
                    {
-                       MaskID = g.Key,
+                       MaskID = g.Key.MaskID,
+                        PF=g.Key.PF,
                        Processing = g.Where(p => p.Status.Trim() == "Processing").Count(),
                        Waiting = g.Where(p => p.Status.Trim() == "Waiting").Count(),
                        Hold1 = g.Where(p => p.Status.Trim() == "Hold" && (p.Ope == "450.0030" || p.Ope == "780.0150")).Count(),
                        Hold2 = g.Where(p => p.Status.Trim() == "Hold" && (p.Ope == "450.0040" || p.Ope == "780.0200")).Count(),
                        Hold3 = g.Where(p => p.Status.Trim() == "Hold" && (p.Ope == "500.0100" || p.Ope == "780.0225" || p.Ope == "780.0250" || p.Ope == "792.0500")).Count(),
-                       Other = g.Count() ,
-                        OnlineSingle=k==null?0:k.OnlineSingle,
-                        OnlineMulti=k==null?0:k.OnlineMulti,
-                        PEConfirmSingle=k==null?0:k.PEConfirmSingle,
-                        PEConfirmMulti=k==null?0:k.PEConfirmMulti,
+                       Other = g.Count(),
+                       OnlineSingle = k == null ? 0 : k.OnlineSingle,
+                       OnlineMulti = k == null ? 0 : k.OnlineMulti,
+                       PEConfirmSingle = k == null ? 0 : k.PEConfirmSingle,
+                       PEConfirmMulti = k == null ? 0 : k.PEConfirmMulti,
                        NewS = k == null ? 0 : k.NewS,
                        NewM = k == null ? 0 : k.NewM
                    };
@@ -456,7 +458,7 @@ namespace slAmidaConsole.Web
                 tblMaskInfo minfo = db.tblMaskInfo.FirstOrDefault(n => n.MaskID == item.MaskID);
                 if (minfo != null)
                 {
-                    item.PF = minfo.PF;
+                   // item.PF = minfo.PF;
                     item.RFDC = minfo.RFDC;
                     item.Sponsor = minfo.Sponsor;
                     item.Customer = minfo.Customer;
@@ -477,13 +479,14 @@ namespace slAmidaConsole.Web
             {
                 DataSet.rptCurrentWIPRow row = table.NewrptCurrentWIPRow();
                 row.MaskID = schema.MaskID;
+                row.PF = schema.PF;
                 row.Processing  = schema.Processing;
                 row.Waiting  = schema.Waiting;
                 row.Hold1  = schema.Hold1;
                 row.Hold2 = schema.Hold2;
                 row.Hold3 = schema.Hold3;
                 row.Other = schema.Other; //- schema.Processing - schema.Waiting - schema.Hold1 - schema.Hold2 - schema.Hold3;
-                row.PF = schema.PF;
+              //  row.PF = schema.PF;
                 row.RFDC = schema.RFDC;
                 row.Customer = schema.Customer;
                 row.Sponsor = schema.Sponsor;
