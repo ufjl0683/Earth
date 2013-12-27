@@ -41,15 +41,15 @@ namespace test
             //string s = "012-34567890123";
             //Console.WriteLine(s.IndexOf('-', s.IndexOf('-') + 1));
 
-            //WIP_Data[] data = GetWIP("PT", "");
-            //WIP_Data[] data1 = (from x in data where x.MaskID == "BP602" select x).ToArray();
+            WIP_Data[] data = GetWIP("PT", "");
+            WIP_Data[] data1 = (from x in data where x.MaskID == "BP602" select x).ToArray();
             //Console.WriteLine(data1.Length);
         //   string xml=  GetCancelXmlRequest("memo", "partid", "productid", "routeid", "openo");
         //Console.WriteLine(xml);
            // SetTrackIn("AP428P326-06", "Multi-AP428-200","LAD-1");
      //       SetCompleted("AH770P102-05");
-          string res=  AutoMes("IN","aa","AS370-1.000","trk-07", "190.0300");
-          Console.WriteLine(res);
+       //   string res=  AutoMes("IN","aa","AS370-1.000","trk-07", "190.0300");
+      //    Console.WriteLine(res);
             Console.ReadKey();
         }
 

@@ -96,6 +96,9 @@ namespace AmidaServerService
                    string feedfilename = Guid.NewGuid().ToString() + ".txt";
             try
             {
+                if(INOUT!="IN" && INOUT !="OUT")
+                    return "Fail: unexpected INOUT !";
+
                 if (SM == "S")
                 {
                     string[] temps = PARTID.Split(new char[] { '-' });
@@ -134,7 +137,7 @@ namespace AmidaServerService
                 sw.Close();
                 process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\AutoPMS.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoPms\\" + feedfilename);
 
-                if (!process.WaitForExit(3000))
+                if (!process.WaitForExit(10000))
                     return "Fail:Timeout";
 
                 if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\" + feedfilename + ".out"))
@@ -155,7 +158,7 @@ namespace AmidaServerService
             {
                 try
                 {
-                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename);
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\" + feedfilename);
                 }
                 catch { ;}
 
@@ -163,7 +166,7 @@ namespace AmidaServerService
                 try
                 {
 
-                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out");
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\" + feedfilename + ".out");
                 }
                 catch { ;}
             }
@@ -176,7 +179,8 @@ namespace AmidaServerService
             string feedfilename = Guid.NewGuid().ToString() + ".txt";
             try
             {
-
+                if (INOUT != "IN" && INOUT != "OUT")
+                    return "Fail: unexpected INOUT !";
                 string[] temps = PARTID.Split(new char[] { '-' });
                 string partid = temps[0].Substring(0, 5) + temps[1] + "." + temps[2];
 
@@ -188,7 +192,7 @@ namespace AmidaServerService
                 sw.Close();
                 process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\AutoMES.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename);
 
-                if (!process.WaitForExit(3000))
+                if (!process.WaitForExit(10000))
                     return "Fail:Timeout";
 
                 if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out"))
