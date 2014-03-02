@@ -44,26 +44,48 @@ namespace AmidaServerService
                 string MaskID = splits[0];
                  LotID = splits[1];
                  string Mask = MaskID.Substring(0, 5);  //PCID.Substring(0, 5);
-                     
 
+                 string Mask_M = MaskID;   //          
 
                 if (PCID[15] == 'V' || PCID[14] == 'V')
                     Mask = Mask + "V" + MaskID.Substring(5, MaskID.Length - 5);
                 else
                     Mask = MaskID;
                 if (PCID[17] == '3')
+                {
                     Mask = Mask + "C";
+                    Mask_M = Mask_M + "C"; 
+                }
                 else if (PCID[17] == '4')
-                    Mask = Mask + 'D';
+                {
+                    Mask = Mask + "D";
+                    Mask_M = Mask_M + "D"; 
+                }
+                else if (PCID[17] == '5')
+                {
+                    Mask = Mask + "E";
+                    Mask_M = Mask_M + "E"; 
+                }
+                else if(PCID[17] == '6')
+                {
+                     Mask = Mask + "F";
+                    Mask_M = Mask_M + "F"; 
+                }
                 string Shape = PCID[9].ToString();
 
-                string ini = "";
+                string ini = "",FileName="";
                 if (SM == "S")
-                    ini = MaskID + ".ini";
+                {
+                    //ini = MaskID + ".ini";
+                    ini = Mask + ".ini";
+                    FileName = MaskID + "-" + LotID; 
+
+                }
                 else if (SM == "M")
                 {
-                    ini = MaskID+"-"+LotID + ".ini";
-
+                   // ini = MaskID + "-" + LotID + ".ini";
+                    ini = Mask_M + "-" + LotID + ".ini";
+                    FileName = Mask_M + "-" + LotID;            
                     string[] seqs = Wafer.Split(new char[] { ',' });
                     string res = (from n in seqs where n.Trim() == LotID.Substring(LotID.Length - 2, 2) select n).FirstOrDefault();
                     if (res == null)
@@ -77,9 +99,9 @@ namespace AmidaServerService
                 //sr.Serialize(ms, new ErrorInfo() { Message = "error", StackTrace = "test" });
                 //return System.Text.UTF8Encoding.UTF8.GetString(ms.ToArray());
                 if(OPID=="99999")
-                    return new ConfigInfo() { Ini = ini, Mask = Mask, RCP = RCP, Shape = Shape, GoTest = "Error Message test!" };
+                    return new ConfigInfo() { Ini = ini, Mask = Mask, RCP = RCP, Shape = Shape, GoTest = "Error Message test!" ,FileName=FileName};
 
-                return new ConfigInfo() { Ini = ini, Mask = Mask, RCP = RCP, Shape = Shape,GoTest="Go" };
+                return new ConfigInfo() { Ini = ini, Mask = Mask, RCP = RCP, Shape = Shape,GoTest="Go",FileName=FileName };
             }
             catch (Exception ex)
             {
@@ -92,6 +114,22 @@ namespace AmidaServerService
             string partid="";
            // if(SM=='S")
 
+              if(EQPID.StartsWith("RCP"))
+
+              {
+                  try
+                  {
+                  EQPID = "RCP-" + int.Parse(EQPID.Split(new char[] { '-' })[1]);
+                  }
+                  catch(Exception ex)
+                  {
+                      Console.WriteLine(ex.Message+","+ex.StackTrace);
+                      return "Fail:RCP name illegal!";
+                     
+                  }
+
+             
+              }
             
                    string feedfilename = Guid.NewGuid().ToString() + ".txt";
             try
@@ -138,7 +176,14 @@ namespace AmidaServerService
                 process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\AutoPMS.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoPms\\" + feedfilename);
 
                 if (!process.WaitForExit(10000))
+                {
+                    try
+                    {
+                        process.Kill();
+                    }
+                    catch { ;}
                     return "Fail:Timeout";
+                }
 
                 if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\" + feedfilename + ".out"))
                     return "Fail:output file not found!";
@@ -174,7 +219,21 @@ namespace AmidaServerService
         }
         public string AutoMES(string INOUT, string OPID, string PARTID, string EQPID, string OPENO)
         {
+            if (EQPID.StartsWith("RCP"))
+            {
+                try
+                {
+                    EQPID = "RCP-" + int.Parse(EQPID.Split(new char[] { '-' })[1]);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                    return "Fail:RCP name illegal!";
 
+                }
+
+               
+            }
 
             string feedfilename = Guid.NewGuid().ToString() + ".txt";
             try
@@ -193,7 +252,14 @@ namespace AmidaServerService
                 process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\AutoMES.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename);
 
                 if (!process.WaitForExit(10000))
+                {
+                    try
+                    {
+                        process.Kill();
+                    }
+                    catch { ;}
                     return "Fail:Timeout";
+                }
 
                 if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out"))
                     return "Fail:output file not found!";
@@ -250,6 +316,8 @@ namespace AmidaServerService
           public string Ini { get; set; }
           [DataMember]
           public string GoTest { get; set; }
+          [DataMember]
+          public string FileName { get; set; }
       }
 
    

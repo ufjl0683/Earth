@@ -35,7 +35,22 @@ namespace test
     {
         static void Main(string[] args)
         {
+            string EQPID = "RCP-031";
 
+            if (EQPID.StartsWith("RCP"))
+            {
+                try
+                {
+                    EQPID = "RCP-" + int.Parse(EQPID.Split(new char[] { '-' })[1]);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+
+                }
+
+               Console.WriteLine( "Fail:RCP name illegal!");
+            }
 
          //   Console.WriteLine(DateTime.Now.ToLongDateString());
             //string s = "012-34567890123";
