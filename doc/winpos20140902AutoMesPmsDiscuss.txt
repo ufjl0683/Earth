@@ -1,0 +1,23 @@
+AutoMESPCM.exe INOUT  filename.txt
+
+
+filename.txt content
+userid  partid  eqpid
+
+
+filename.out
+
+
+success
+[0000000I:..NormalEnd..@RecipeName]
+
+fail
+
+«D [0000000I: ¶}©l
+ 
+
+
+
+
+pattern hold 
+wana.exe  -e1  ini mdbname  outdir

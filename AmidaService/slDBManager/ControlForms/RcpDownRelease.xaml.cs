@@ -223,45 +223,70 @@ namespace slDBManager.ControlForms
 
 
                      tmr.Interval = TimeSpan.FromMinutes(2);
+                     bool ActiveTmr = true;
                      if (!info.IsBusy)
                      {
                          if (but.Content.ToString() == "Down")
                          {
-                              chldDownSubStatusChoice f = new chldDownSubStatusChoice();
-                     f.Show();
-                     f.Closed += (ss, aa) =>
-                         {
-                             if (f.DialogResult != true)
-                                 return;
-                             //  MessageBox.Show("Call Down");
-                             client.DownAsync(info.PcName, (App.Current as App).UserID, f.Result);
-                             client.DownCompleted += (s, a) =>
+                             ActiveTmr = false;
+                             chldDownSubStatusChoice f = new chldDownSubStatusChoice();
+                             f.Show();
+                             f.Closed += (ss, aa) =>
                                  {
-                                     if (a.Error != null)
-                                         MessageBox.Show(a.Error.Message + "," + a.Error.StackTrace);
+                                     if (f.DialogResult != true)
+                                         return;
+                                     //  MessageBox.Show("Call Down");
+                                     client.DownAsync(info.PcName, (App.Current as App).UserID, f.Result);
+                                     client.DownCompleted += (s, a) =>
+                                         {
+                                             if (a.Error != null)
+                                                 MessageBox.Show(a.Error.Message + "," + a.Error.StackTrace);
+
+                                         };
+
+                                     //==========================
+
+                                     info.MiscRemark = "";
+                                     tmr.Tick += (s, a) =>
+                                     {
+                                         tmr.Stop();
+
+                                         info.IsBusy = false; ;
+                                         // but.Foreground = new SolidColorBrush(Colors.Black);
+                                         info.MiscRemark = "TimeOut";
+
+                                     };
+                                     tmr.Start();
+
+                                     //==========================
+                                     (but.DataContext as RegisterDeviceInfo).IsBusy = true;
 
                                  };
-                         };
                          }
                          else
+                         {
                              client.ReleaseAsync(info.PcName, (App.Current as App).UserID);
 
-                         (but.DataContext as RegisterDeviceInfo).IsBusy = true;
+                               (but.DataContext as RegisterDeviceInfo).IsBusy = true;
+                         }
 
 
                      }
                      //    but.Foreground = new SolidColorBrush(Colors.Red);
-                     info.MiscRemark = "";
-                     tmr.Tick += (s, a) =>
+                     if (ActiveTmr)
                      {
-                         tmr.Stop();
+                         info.MiscRemark = "";
+                         tmr.Tick += (s, a) =>
+                         {
+                             tmr.Stop();
 
-                         info.IsBusy = false; ;
-                         // but.Foreground = new SolidColorBrush(Colors.Black);
-                         info.MiscRemark = "TimeOut";
+                             info.IsBusy = false; ;
+                             // but.Foreground = new SolidColorBrush(Colors.Black);
+                             info.MiscRemark = "TimeOut";
 
-                     };
-                     tmr.Start();
+                         };
+                         tmr.Start();
+                     }
                  
 
         }

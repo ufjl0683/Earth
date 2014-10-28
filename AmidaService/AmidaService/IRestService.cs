@@ -22,10 +22,14 @@ namespace AmidaServerService
         [WebGet]
        // [WebGet(UriTemplate = "GetConfig?OPID={OPID}&PCID={PCID}&SM={SM}&TestMode={TestMode}&LotID={LotID}&Wafer={Wafer}&AP={AP}&RCP={RCP}")]
         ConfigInfo GetConfig(string OPID, string PCID, string SM, string TestMode, string LotID, string Wafer, string PF, string RCP);
+        [OperationContract]
         [WebGet]
         string AutoMES(string INOUT, string OPID, string PARTID, string EQPID, string OPENO);
-
+         [OperationContract]
         [WebGet]
       string AutoPMS(string INOUT, string OPID, string PARTID, string EQPID, string OPENO, string SM, string Wafer);
+         [OperationContract]
+        [WebGet]
+        string AutoMESPCM(string INOUT, string OPID, string PARTID, string EQPID/*, string OPENO*/);
     }
 }

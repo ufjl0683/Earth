@@ -35,7 +35,26 @@ namespace test
     {
         static void Main(string[] args)
         {
+            string res = "[0000000I: skwerewr @recpipename][eee]";
+            if (!res.StartsWith("[0000000I:"))
+                return;
+
+            else
+            {
+
+                int startpos, endpos;
+                startpos = res.IndexOf('@');
+                endpos = res.IndexOf(']');
+                if (startpos == -1 || endpos == -1)
+                    return;
+                string ReceipeID = res.Substring(startpos + 1, endpos - startpos - 1);  // res.Split(new char[] { '@' })[1].Trim(new char[] { ']' });
+                //處理 Receipe ID here
+                Console.WriteLine( "Success:" + ReceipeID);
+
+            }
+            Console.ReadKey();
             string EQPID = "RCP-031";
+            System.IO.Directory.CreateDirectory("c:\\test\\PCM123\\import");
 
             if (EQPID.StartsWith("RCP"))
             {
@@ -92,6 +111,63 @@ namespace test
                     return "Fail:" + res;
 
                 return "Success";
+            }
+            catch (Exception ex)
+            {
+                return "Fail:" + ex.Message;
+            }
+            finally
+            {
+                try
+                {
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename);
+                }
+                catch { ;}
+
+
+                try
+                {
+
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out");
+                }
+                catch { ;}
+            }
+
+
+        }
+
+
+        public static string AutoMesPMS(string INOUT, string userid, string partid, string eqpid/*, string openo*/)
+        {
+            string feedfilename = Guid.NewGuid().ToString() + ".txt";
+            try
+            {
+                System.Diagnostics.Process process;
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename));
+                sw.Write(userid + " " + partid + " " + eqpid + " " /*+ openo*/);
+                sw.Close();
+                process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\AutoMESPMS.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename);
+
+                if (!process.WaitForExit(3000))
+                    return "Fail:Timeout";
+
+                if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out"))
+                    return "Fail:output file not found!";
+                System.IO.StreamReader sr = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\" + feedfilename + ".out");
+                string res = sr.ReadLine();
+                sr.Close();
+                if (!res.StartsWith("[0000000I:"))
+                    return "Fail:" + res;
+                else
+                {
+                    // must fill here
+
+                    if (INOUT == "IN")
+                        ;
+                    // string Recipe=res.Split(new ch[]{})
+                   return "Success";
+                }
             }
             catch (Exception ex)
             {

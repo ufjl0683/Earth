@@ -620,7 +620,7 @@ namespace slAmidaConsole.Web
                     if (dr[i] is DateTime)
                         sb.Append( ","+ ((DateTime)dr[i]).ToString("yyyy/MM/dd HH:mm:ss"));
                     else
-                        sb.Append("," + dr[i]);
+                        sb.Append("," + dr[i].ToString().Replace(",",@"\"));
 
                 }
                  sb.Append("\r\n");

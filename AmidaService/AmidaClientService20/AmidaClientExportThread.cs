@@ -18,34 +18,52 @@ namespace AmidaClientService20
         bool bexit = false;
 
         EventNotifyClient NotifyClient;
+        string MachineName;
+
+        string BaseDirectory;
         RemoteInterface.IAmidaService IAmidaService;
        // AmidaClientServiceDll.AmidaService.AmidaServiceClient client;
     //   AmidaService.AmidaServiceClient client;//=new AmidaService.AmidaServiceClient(;//=new AmidaService.AmidaServiceClient(;
-        public AmidaClientExportThread()
+        public AmidaClientExportThread():this(Environment.MachineName,"c:\\")
         {
             //try
             //{
-                
-                IAmidaService = RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(IAmidaService),
-                    RemoteInterface.RemoteBuilder.getRemoteUri(AmidaClientService20.Service.DestIP, 9090, "AmidaService")) as IAmidaService;
-#if WANA
-                IAmidaService.Register(Environment.MachineName, "WANA");
-#else
-                IAmidaService.Register(Environment.MachineName, "TESTER");
-#endif
-                NotifyClient = new EventNotifyClient();
-                NotifyClient.OnConnect += new OnConnectEventHandler(NotifyClient_OnConnect);
-                NotifyClient.OnCommError += new EventHandler(NotifyClient_OnCommError);
-                NotifyClient.Connect(AmidaClientService20.Service.DestIP, 9091);
-
-                //  client=new myHost(new,
-                new System.Threading.Thread(Task).Start();
+   
             //}
             //catch (Exception ex)
             //{
             //    Util.WriteEventLog(ex.Message + "," + ex.StackTrace);
             //}
            
+        }
+
+        public AmidaClientExportThread(string MachineName,string BaseDirectory)
+        {
+            this.MachineName = MachineName;
+            this.BaseDirectory = BaseDirectory;
+
+            IAmidaService = RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(IAmidaService),
+                RemoteInterface.RemoteBuilder.getRemoteUri(AmidaClientService20.Service.DestIP, 9090, "AmidaService")) as IAmidaService;
+#if WANA
+                IAmidaService.Register(MachineName, "WANA");
+#else
+            IAmidaService.Register(MachineName, "TESTER");
+#endif
+            NotifyClient = new EventNotifyClient();
+            NotifyClient.OnConnect += new OnConnectEventHandler(NotifyClient_OnConnect);
+            NotifyClient.OnCommError += new EventHandler(NotifyClient_OnCommError);
+            NotifyClient.Connect(AmidaClientService20.Service.DestIP, 9091);
+
+            if (!System.IO.Directory.Exists(BaseDirectory  + "\\import"))
+                System.IO.Directory.CreateDirectory(BaseDirectory  + "\\import");
+
+            if (!System.IO.Directory.Exists(BaseDirectory  + "\\export"))
+                System.IO.Directory.CreateDirectory(BaseDirectory  + "\\export");
+
+
+            //  client=new myHost(new,
+            new System.Threading.Thread(Task).Start();
+             
         }
 
         void NotifyClient_OnCommError(object sender, EventArgs e)
@@ -93,8 +111,8 @@ namespace AmidaClientService20
             //{
                 NotifyClient.OnEvent += new NotifyEventHandler(NotifyClient_OnEvent);
             //}
-                NotifyClient.RegistEvent(new NotifyEventObject(EventEnumType.InportCommand, Environment.MachineName, null));
-            IAmidaService.Register(Environment.MachineName, "TESTER");
+                NotifyClient.RegistEvent(new NotifyEventObject(EventEnumType.InportCommand, MachineName, null));
+            IAmidaService.Register(MachineName, "TESTER");
  
         
         }
@@ -114,14 +132,14 @@ namespace AmidaClientService20
                
                 try
                 {
-                    string[] files = System.IO.Directory.GetFiles("c:\\export");
+                    string[] files = System.IO.Directory.GetFiles(BaseDirectory+"export");
 
                     if (files.Length == 0)
                     {
                         isPendfingChanged = isPending == false;
                         isPending = false;
                         if (isPendfingChanged)
-                            IAmidaService.ReportExportPending(Environment.MachineName, isPending);
+                            IAmidaService.ReportExportPending(MachineName, isPending);
                         continue;
                     }
                     System.Collections.Generic.List<string> list = new List<string>();
@@ -180,7 +198,7 @@ namespace AmidaClientService20
                                         
 
                                       //check here
-                                       IAmidaService.ExportCommand(Environment.MachineName,"VerifyNoteData"/*fileinfo.Name*/,System.Text.Encoding.UTF8.GetString(ms.ToArray()));
+                                       IAmidaService.ExportCommand(MachineName,"VerifyNoteData"/*fileinfo.Name*/,System.Text.Encoding.UTF8.GetString(ms.ToArray()));
                                        
                                         HasErr = false;
                                     }
@@ -216,7 +234,7 @@ namespace AmidaClientService20
                                  
                                  // check here
                                  //    client.ExportCommand("VerifyNoteData", xmlcmd);
-                                     IAmidaService.ExportCommand(Environment.MachineName,file, xmlcmd);
+                                     IAmidaService.ExportCommand(MachineName,file, xmlcmd);
                                     HasErr = false;
                                     isPendfingChanged = isPending != false;
                                     isPending = false;
@@ -254,7 +272,7 @@ namespace AmidaClientService20
                     try
                     {
                         if(isPendfingChanged)
-                             IAmidaService.ReportExportPending(Environment.MachineName, isPending);
+                             IAmidaService.ReportExportPending(MachineName, isPending);
                     }
                     catch { ;}
 
@@ -286,9 +304,9 @@ namespace AmidaClientService20
                 {
 
                     case InportCmdType.InportFile:
-                        if (!System.IO.Directory.Exists("c:\\import"))
-                            System.IO.Directory.CreateDirectory("c:\\import");
-                        StreamWriter wr = System.IO.File.CreateText("c:\\import\\" + LeadingFileName + "-" + Guid.NewGuid().ToString()+".xml");
+                        if (!System.IO.Directory.Exists(BaseDirectory+"import"/*"c:\\import"*/))
+                            System.IO.Directory.CreateDirectory(BaseDirectory+"import"/*"c:\\import"*/);
+                        StreamWriter wr = System.IO.File.CreateText(BaseDirectory+ "import\\" + LeadingFileName + "-" + Guid.NewGuid().ToString()+".xml");
                         wr.Write(xmlCmd);
                         wr.Flush();
                         wr.Close();

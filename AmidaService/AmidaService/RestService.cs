@@ -78,8 +78,8 @@ namespace AmidaServerService
                 {
                     //ini = MaskID + ".ini";
                     ini = Mask + ".ini";
-                    FileName = MaskID + "-" + LotID; 
-
+                  //  FileName = MaskID + "-" + LotID; 
+                    FileName = Mask_M + "-" + LotID; 
                 }
                 else if (SM == "M")
                 {
@@ -175,7 +175,7 @@ namespace AmidaServerService
                 sw.Close();
                 process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoPms\AutoPMS.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoPms\\" + feedfilename);
 
-                if (!process.WaitForExit(10000))
+                if (!process.WaitForExit(20000))
                 {
                     try
                     {
@@ -250,8 +250,11 @@ namespace AmidaServerService
                 sw.Write(OPID + " " + partid + " " + EQPID + " " + OPENO);
                 sw.Close();
                 process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoMes\AutoMES.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoMes\\" + feedfilename);
+                int timeout = 120 * 1000;
+                if (INOUT == "OUT")
+                    timeout = 1000 * 120;
 
-                if (!process.WaitForExit(10000))
+                if (!process.WaitForExit(timeout))
                 {
                     try
                     {
@@ -273,7 +276,7 @@ namespace AmidaServerService
             }
             catch (Exception ex)
             {
-                return "Fail:" + ex.Message;
+                return "Fail:" + ex.Message+","+ex.StackTrace;
             }
             finally
             {
@@ -294,6 +297,103 @@ namespace AmidaServerService
 
 
            // throw new NotImplementedException();
+        }
+
+        public string AutoMESPCM(string INOUT, string OPID, string PARTID, string EQPID/*, string OPENO*/)
+        {
+            //if (EQPID.StartsWith("RCP"))
+            //{
+            //    try
+            //    {
+            //        EQPID = "RCP-" + int.Parse(EQPID.Split(new char[] { '-' })[1]);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine(ex.Message + "," + ex.StackTrace);
+            //        return "Fail:RCP name illegal!";
+
+            //    }
+
+
+            //}
+
+            string feedfilename = Guid.NewGuid().ToString() + ".txt";
+            try
+            {
+                if (INOUT != "IN" && INOUT != "OUT")
+                    return "Fail: unexpected INOUT !";
+           //     string[] temps = PARTID.Split(new char[] { '-' });
+             //   string partid = temps[0].Substring(0, 5) + temps[1] + "." + temps[2];
+                string partid = PARTID;
+                Console.WriteLine("AutoMesPMS:{0},{1},{2},{3} ", INOUT, OPID, partid, EQPID /*, OPENO*/);
+                System.Diagnostics.Process process;
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + "AutoMESPCM\\" + feedfilename));
+                sw.Write(OPID + " " + partid + " " + EQPID /*+ " " + OPENO*/);
+                sw.Close();
+                process = Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"AutoMESPCM\AutoMESPCM.exe", INOUT + " " + AppDomain.CurrentDomain.BaseDirectory + "AutoMESPCM\\" + feedfilename);
+                int timeout = 120 * 1000;
+                if (INOUT == "OUT")
+                    timeout = 1000 * 120;
+
+                if (!process.WaitForExit(timeout))
+                {
+                    try
+                    {
+                        process.Kill();
+                    }
+                    catch { ;}
+                    return "Fail:Timeout";
+                }
+
+                if (!System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"AutoMESPCM\" + feedfilename + ".out"))
+                    return "Fail:output file not found!";
+                System.IO.StreamReader sr = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"AutoMESPCM\" + feedfilename + ".out");
+                string res = sr.ReadLine();
+                sr.Close();
+                if (!res.StartsWith("[0000000I:"))
+                    return "Fail:" + res;
+
+                else
+                {
+                    if (INOUT == "IN")
+                    {
+                        int startpos, endpos;
+                        startpos = res.IndexOf('@');
+                        endpos = res.IndexOf(']');
+                        if (startpos == -1 || endpos == -1)
+                            return "Fail: @ or ] not found!";
+                        string ReceipeID = res.Substring(startpos + 1, endpos - startpos - 1);  // res.Split(new char[] { '@' })[1].Trim(new char[] { ']' });
+                        //處理 Receipe ID here
+                        return "Success:" + ReceipeID;
+                    }
+                    else
+                        return "Success";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Fail:" + ex.Message;
+            }
+            finally
+            {
+                try
+                {
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMESPCM\" + feedfilename);
+                }
+                catch { ;}
+
+
+                try
+                {
+
+                    System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"AutoMESPCM\" + feedfilename + ".out");
+                }
+                catch { ;}
+            }
+
+
+            // throw new NotImplementedException();
         }
     }
 
