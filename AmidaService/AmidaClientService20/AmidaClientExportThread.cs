@@ -162,17 +162,17 @@ namespace AmidaClientService20
                             bool HasErr = true;
                             if (fileinfo.Length == 0)
                                 continue;
-                         
-                            if (fileinfo.Extension.ToUpper()==".MDB")
+
+                            if (fileinfo.Extension.ToUpper() == ".MDB")
                             {
                                 // continue;
-                              
+
                                 System.Data.OleDb.OleDbConnection cn = new System.Data.OleDb.OleDbConnection("provider=microsoft.jet.oledb.4.0;data source=" + file);
 
                                 try
                                 {
                                     cn.Open();
-                                    System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand("select * from VerifyNote",cn);
+                                    System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand("select * from VerifyNote", cn);
                                     System.Data.OleDb.OleDbDataReader rd = cmd.ExecuteReader();
                                     while (rd.Read())
                                     {
@@ -185,21 +185,21 @@ namespace AmidaClientService20
                                         data.RCP = rd["RCP"].ToString();
                                         data.StartTimes = System.Convert.ToDateTime(rd["StartTime"]);
                                         data.StopTimes = System.Convert.ToDateTime(rd["StopTime"]);
-                                        data.TestVerify =rd["TestVerify"].ToString();
+                                        data.TestVerify = rd["TestVerify"].ToString();
                                         data.TestVerifyDate = System.Convert.ToDateTime(rd["TestVerifyDate"]);
                                         data.TouchDo = System.Convert.ToInt64(rd["TouchDo"]);
                                         data.TPS = rd["TPS"].ToString();
                                         data.WaferID = rd["WaferID"].ToString();
                                         //AmidaService.AmidaServiceClient client = new AmidaService.AmidaServiceClient();
                                         System.Xml.Serialization.XmlSerializer sr = new System.Xml.Serialization.XmlSerializer(typeof(VerifyNoteData));
-                                        MemoryStream ms=new MemoryStream();
+                                        MemoryStream ms = new MemoryStream();
 
                                         sr.Serialize(ms, data);
-                                        
 
-                                      //check here
-                                       IAmidaService.ExportCommand(MachineName,"VerifyNoteData"/*fileinfo.Name*/,System.Text.Encoding.UTF8.GetString(ms.ToArray()));
-                                       
+
+                                        //check here
+                                        IAmidaService.ExportCommand(MachineName, "VerifyNoteData"/*fileinfo.Name*/, System.Text.Encoding.UTF8.GetString(ms.ToArray()));
+
                                         HasErr = false;
                                     }
 
@@ -218,30 +218,30 @@ namespace AmidaClientService20
                                 {
                                     cn.Close();
                                 }
-                             
+
 
                             }
                             else
-                             if (fileinfo.Extension.ToUpper()==".XML")
-                             {
-                                
-                                // check here
-                                //    DestType = typeof(AmidaService.VerifyNoteData);
+                                if (fileinfo.Extension.ToUpper() == ".XML")
+                                {
 
-                                     string xmlcmd = System.IO.File.ReadAllText(file);
-                                   
+                                    // check here
+                                    //    DestType = typeof(AmidaService.VerifyNoteData);
 
-                                 
-                                 // check here
-                                 //    client.ExportCommand("VerifyNoteData", xmlcmd);
-                                     IAmidaService.ExportCommand(MachineName,file, xmlcmd);
+                                    string xmlcmd = System.IO.File.ReadAllText(file);
+
+
+
+                                    // check here
+                                    //    client.ExportCommand("VerifyNoteData", xmlcmd);
+                                    IAmidaService.ExportCommand(MachineName, file, xmlcmd);
                                     HasErr = false;
                                     isPendfingChanged = isPending != false;
                                     isPending = false;
                                 }
 
                             if (!HasErr)
-                                  System.IO.File.Delete(file);
+                                System.IO.File.Delete(file);
                         }
                         catch (Exception ex1)
                         {
@@ -267,6 +267,10 @@ namespace AmidaClientService20
                             }
                             catch { ;}
                             Console.WriteLine(ex1.Message);
+                        }
+                        finally
+                        {
+                            System.Threading.Thread.Sleep(3000);
                         }
                     }  //for
                     try
