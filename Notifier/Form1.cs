@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using RemoteInterface;
+using System.Configuration;
 
 namespace Notifier
 {
@@ -21,17 +22,28 @@ namespace Notifier
         bool isVisible;
         bool HasNewMessage = false;
         NotifyMessage CurrentMessage;
+        string MachineName;
         public Form1()
         {
             InitializeComponent();
+            try
+            {
+                SettingsProperty temp = Properties.Settings.Default.Properties["MachineName"];
+                MachineName = temp.DefaultValue.ToString();
+            }
+            catch
+            {
+                MachineName = System.Environment.MachineName;
+            }
+ 
          //   this.dataGridView1.Columns[0].HeaderCell.SortGlyphDirection = SortOrder.Descending;
         
         }
 
         void nClient_OnConnect(object sender)
         {  
-             nClient.RegistEvent(new RemoteInterface.NotifyEventObject(RemoteInterface.EventEnumType.Message,System.Environment.MachineName,null));
-             NotifyMessage mesg=new NotifyMessage(){ TimeStamp=DateTime.Now, title="SYS", text="ORegist "+System.Environment.MachineName };
+             nClient.RegistEvent(new RemoteInterface.NotifyEventObject(RemoteInterface.EventEnumType.Message,MachineName,null));
+             NotifyMessage mesg=new NotifyMessage(){ TimeStamp=DateTime.Now, title="SYS", text="ORegist "+MachineName };
              this.BeginInvoke(new InvokeDelegate(InvokeTask), mesg);
         }
 
