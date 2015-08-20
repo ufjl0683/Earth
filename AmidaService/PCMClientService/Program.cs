@@ -10,7 +10,7 @@ namespace PCMClientService
     {
         static void Main(string[] args)
         {
-          string  BaseDirectory = @"C:\TMS\";
+          string  BaseDirectory = @"P:\TMS\";
 
           if (args.Length == 0)
                  AmidaClientService20.Service.DestIP = "10.14.2.18";
@@ -24,7 +24,10 @@ namespace PCMClientService
             {
                 s=s.Trim();
                 if (s != "")
-                    new AmidaClientService20.AmidaClientExportThread(s,BaseDirectory+s+"\\");
+                {
+                    new AmidaClientService20.AmidaClientExportThread(s, BaseDirectory + s + "\\");
+                    System.Threading.Thread.Sleep(10000);
+                }
             }
 
 

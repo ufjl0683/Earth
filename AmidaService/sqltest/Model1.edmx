@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AmidaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="AmidaModelStoreContainer">
+          <EntitySet Name="PC_Rec_tbl" EntityType="AmidaModel.Store.PC_Rec_tbl" store:Type="Tables" store:Schema="dbo" store:Name="PC_Rec_tbl">
+            <DefiningQuery>SELECT 
+      [PC_Rec_tbl].[Idx] AS [Idx], 
+      [PC_Rec_tbl].[PC_ID] AS [PC_ID], 
+      [PC_Rec_tbl].[PC_org_status] AS [PC_org_status], 
+      [PC_Rec_tbl].[PC_status] AS [PC_status], 
+      [PC_Rec_tbl].[EQ_ID_for_PC] AS [EQ_ID_for_PC], 
+      [PC_Rec_tbl].[PC_code_for_EQ] AS [PC_code_for_EQ], 
+      [PC_Rec_tbl].[PC_backreason] AS [PC_backreason], 
+      [PC_Rec_tbl].[PC_tip_level] AS [PC_tip_level], 
+      [PC_Rec_tbl].[Currentmax_tip_size] AS [Currentmax_tip_size], 
+      [PC_Rec_tbl].[Current_length_of_needle_body] AS [Current_length_of_needle_body], 
+      [PC_Rec_tbl].[Current_touchdown] AS [Current_touchdown], 
+      [PC_Rec_tbl].[Current_times_of_adjusting_needle] AS [Current_times_of_adjusting_needle], 
+      [PC_Rec_tbl].[PC_ndl_position] AS [PC_ndl_position], 
+      [PC_Rec_tbl].[Modifier] AS [Modifier], 
+      [PC_Rec_tbl].[PC_ndl_pos_Modifier] AS [PC_ndl_pos_Modifier], 
+      [PC_Rec_tbl].[PC_comment] AS [PC_comment], 
+      [PC_Rec_tbl].[PC_rec_time] AS [PC_rec_time], 
+      [PC_Rec_tbl].[PC_ndl_pos_rec_time] AS [PC_ndl_pos_rec_time]
+      FROM [dbo].[PC_Rec_tbl] AS [PC_Rec_tbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PC_tbl" EntityType="AmidaModel.Store.PC_tbl" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="AmidaModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAlarm" EntityType="AmidaModel.Store.tblAlarm" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEQ" EntityType="AmidaModel.Store.tblEQ" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEQHistory" EntityType="AmidaModel.Store.tblEQHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMaskInfo" EntityType="AmidaModel.Store.tblMaskInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMenu" EntityType="AmidaModel.Store.tblMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMenuGroup" EntityType="AmidaModel.Store.tblMenuGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="AmidaModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserGroup" EntityType="AmidaModel.Store.tblUserGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserGroupMenu" EntityType="AmidaModel.Store.tblUserGroupMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblVerifyNote" EntityType="AmidaModel.Store.tblVerifyNote" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblVerifyTimeLog" EntityType="AmidaModel.Store.tblVerifyTimeLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblVerifyTimeRef" EntityType="AmidaModel.Store.tblVerifyTimeRef" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblGroupMenu_tblMenu" Association="AmidaModel.Store.FK_tblGroupMenu_tblMenu">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupMenu_tblUserGroup" Association="AmidaModel.Store.FK_tblGroupMenu_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="AmidaModel.Store.FK_tblMenu_tblMenuGroup">
+            <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
+            <End Role="tblMenu" EntitySet="tblMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="AmidaModel.Store.FK_tblUser_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'Amida.dbo.PC_Rec_tbl' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="PC_Rec_tbl">
+          <Key>
+            <PropertyRef Name="Idx" />
+          </Key>
+          <Property Name="Idx" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PC_ID" Type="nvarchar" MaxLength="30" />
+          <Property Name="PC_org_status" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_status" Type="nvarchar" MaxLength="20" />
+          <Property Name="EQ_ID_for_PC" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_code_for_EQ" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_backreason" Type="nvarchar" MaxLength="30" />
+          <Property Name="PC_tip_level" Type="real" />
+          <Property Name="Currentmax_tip_size" Type="real" />
+          <Property Name="Current_length_of_needle_body" Type="real" />
+          <Property Name="Current_touchdown" Type="int" />
+          <Property Name="Current_times_of_adjusting_needle" Type="smallint" />
+          <Property Name="PC_ndl_position" Type="smallint" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_ndl_pos_Modifier" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_comment" Type="nvarchar" MaxLength="100" />
+          <Property Name="PC_rec_time" Type="datetime" />
+          <Property Name="PC_ndl_pos_rec_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PC_tbl">
+          <Key>
+            <PropertyRef Name="PC_ID" />
+          </Key>
+          <Property Name="PC_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="EQ_type_for_PC" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_Vendor" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_status" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_customer" Type="nvarchar" MaxLength="25" />
+          <Property Name="EQ_ID_for_PC" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_cusimport_time" Type="datetime" />
+          <Property Name="Current_Maintanence_time" Type="datetime" />
+          <Property Name="PC_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_ndl_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_reset_times" Type="smallint" />
+          <Property Name="PC_vision" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_pcshp" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_pcmaker" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_pcmakenum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_pcbcode" Type="nvarchar" MaxLength="15" />
+          <Property Name="PC_pcbtype" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_singdual" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_spcnm" Type="nvarchar" MaxLength="20" />
+          <Property Name="PC_backreason" Type="nvarchar" MaxLength="30" />
+          <Property Name="PC_tip_level" Type="real" />
+          <Property Name="Currentmax_tip_size" Type="real" />
+          <Property Name="Current_length_of_needle_body" Type="real" />
+          <Property Name="Total_touchdown" Type="int" />
+          <Property Name="Current_touchdown" Type="int" />
+          <Property Name="Current_times_of_adjusting_needle" Type="smallint" />
+          <Property Name="Current_tip_epoxy" Type="real" />
+          <Property Name="Current_tip_topcb" Type="real" />
+          <Property Name="PC_ndl_position" Type="smallint" />
+          <Property Name="Modifier" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_ndl_pos_Modifier" Type="nvarchar" MaxLength="10" />
+          <Property Name="PC_ndl_pos_Maintanence_time" Type="datetime" />
+          <Property Name="Into_WIN_time" Type="datetime" />
+          <Property Name="Release_time" Type="datetime" />
+          <Property Name="Scrap_time" Type="datetime" />
+          <Property Name="PC_comment" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status_changed_permission" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblAlarm">
+          <Key>
+            <PropertyRef Name="identify" />
+          </Key>
+          <Property Name="identify" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="eq_id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="warning_message" Type="nvarchar" MaxLength="255" />
+          <Property Name="warning_type" Type="int" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="probe_card_id" Type="varchar" MaxLength="30" />
+          <Property Name="WaferID" Type="varchar" MaxLength="50" />
+          <Property Name="eq_operator" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblEQ">
+          <Key>
+            <PropertyRef Name="eqi_id" />
+          </Key>
+          <Property Name="eqi_id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="eq_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="eq_prober" Type="nvarchar" MaxLength="20" />
+          <Property Name="eq_tester" Type="nvarchar" MaxLength="20" />
+          <Property Name="eq_release_time" Type="datetime" Nullable="false" />
+          <Property Name="eq_comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="lot_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="probe_card_id" Type="nvarchar" MaxLength="30" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="recipe" Type="nvarchar" MaxLength="50" />
+          <Property Name="operator" Type="nvarchar" MaxLength="10" />
+          <Property Name="total_num_wafer" Type="int" Nullable="false" />
+          <Property Name="fab" Type="nvarchar" MaxLength="10" />
+          <Property Name="tested_num_wafer" Type="int" Nullable="false" />
+          <Property Name="total_num_chip" Type="int" Nullable="false" />
+          <Property Name="tested_num_chip" Type="int" Nullable="false" />
+          <Property Name="current_test_wafer_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsWarnig" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="current_identify" Type="bigint" />
+          <Property Name="expected_remain_time" Type="int" />
+          <Property Name="current_warning_identify" Type="int" />
+          <Property Name="eq_area" Type="nvarchar" MaxLength="50" />
+          <Property Name="wafer_id" Type="varchar" MaxLength="255" />
+          <Property Name="over_drive" Type="float" />
+          <Property Name="sub_status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblEQHistory">
+          <Key>
+            <PropertyRef Name="identify" />
+          </Key>
+          <Property Name="identify" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="eq_id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="status" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="lot_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="probe_card_id" Type="nvarchar" MaxLength="30" />
+          <Property Name="recipe" Type="nvarchar" MaxLength="50" />
+          <Property Name="total_num_wafer" Type="int" />
+          <Property Name="operator" Type="nvarchar" MaxLength="10" />
+          <Property Name="start_time" Type="datetime" Nullable="false" />
+          <Property Name="stop_time" Type="datetime" />
+          <Property Name="eq_comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsFinish" Type="bit" Nullable="false" />
+          <Property Name="tested_num_wafer" Type="int" />
+          <Property Name="wafer_id_in" Type="varchar" MaxLength="255" />
+          <Property Name="wafer_id_out" Type="varchar" MaxLength="255" />
+          <Property Name="over_drive" Type="float" />
+          <Property Name="over_drive_in" Type="float" />
+          <Property Name="over_drive_out" Type="float" />
+          <Property Name="sub_status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblMaskInfo">
+          <Key>
+            <PropertyRef Name="MaskID" />
+          </Key>
+          <Property Name="MaskID" Type="char" Nullable="false" MaxLength="5" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="50" />
+          <Property Name="RFDC" Type="nvarchar" MaxLength="50" />
+          <Property Name="PF" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sponsor" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuGroupID" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="XAML" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMenuGroup">
+          <Key>
+            <PropertyRef Name="MenuGroupID" />
+          </Key>
+          <Property Name="MenuGroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MenuOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUserGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUserGroupMenu">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="IsAllow" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVerifyNote">
+          <Key>
+            <PropertyRef Name="SeqNo" />
+          </Key>
+          <Property Name="SeqNo" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PCID" Type="varchar" MaxLength="50" />
+          <Property Name="WaferID" Type="varchar" MaxLength="50" />
+          <Property Name="TestVerify" Type="varchar" MaxLength="50" />
+          <Property Name="TestVerifyDate" Type="datetime" />
+          <Property Name="TPS" Type="varchar" MaxLength="50" />
+          <Property Name="MAP" Type="varchar" MaxLength="100" />
+          <Property Name="RCP" Type="varchar" MaxLength="50" />
+          <Property Name="Operators" Type="varchar" MaxLength="50" />
+          <Property Name="StartTimes" Type="datetime" />
+          <Property Name="StopTimes" Type="datetime" />
+          <Property Name="TouchDo" Type="bigint" />
+          <Property Name="Pass" Type="int" />
+          <Property Name="Fail" Type="int" />
+          <Property Name="HasWarning" Type="char" MaxLength="1" />
+          <Property Name="ProbeShape" Type="int" />
+          <Property Name="over_drive" Type="float" />
+        </EntityType>
+        <EntityType Name="tblVerifyTimeLog">
+          <Key>
+            <PropertyRef Name="SeqNo" />
+          </Key>
+          <Property Name="SeqNo" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MaskID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Minute" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVerifyTimeRef">
+          <Key>
+            <PropertyRef Name="MaskID" />
+          </Key>
+          <Property Name="MaskID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Minutes" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblGroupMenu_tblMenu">
+          <End Role="tblMenu" Type="AmidaModel.Store.tblMenu" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="AmidaModel.Store.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupMenu_tblUserGroup">
+          <End Role="tblUserGroup" Type="AmidaModel.Store.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="AmidaModel.Store.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMenu_tblMenuGroup">
+          <End Role="tblMenuGroup" Type="AmidaModel.Store.tblMenuGroup" Multiplicity="1" />
+          <End Role="tblMenu" Type="AmidaModel.Store.tblMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenuGroup">
+              <PropertyRef Name="MenuGroupID" />
+            </Principal>
+            <Dependent Role="tblMenu">
+              <PropertyRef Name="MenuGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserGroup">
+          <End Role="tblUserGroup" Type="AmidaModel.Store.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUser" Type="AmidaModel.Store.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AmidaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AmidaEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="PC_Rec_tbl" EntityType="AmidaModel.PC_Rec_tbl" />
+          <EntitySet Name="PC_tbl" EntityType="AmidaModel.PC_tbl" />
+          <EntitySet Name="sysdiagrams" EntityType="AmidaModel.sysdiagrams" />
+          <EntitySet Name="tblAlarm" EntityType="AmidaModel.tblAlarm" />
+          <EntitySet Name="tblEQ" EntityType="AmidaModel.tblEQ" />
+          <EntitySet Name="tblEQHistory" EntityType="AmidaModel.tblEQHistory" />
+          <EntitySet Name="tblMaskInfo" EntityType="AmidaModel.tblMaskInfo" />
+          <EntitySet Name="tblMenu" EntityType="AmidaModel.tblMenu" />
+          <EntitySet Name="tblMenuGroup" EntityType="AmidaModel.tblMenuGroup" />
+          <EntitySet Name="tblUser" EntityType="AmidaModel.tblUser" />
+          <EntitySet Name="tblUserGroup" EntityType="AmidaModel.tblUserGroup" />
+          <EntitySet Name="tblUserGroupMenu" EntityType="AmidaModel.tblUserGroupMenu" />
+          <EntitySet Name="tblVerifyNote" EntityType="AmidaModel.tblVerifyNote" />
+          <EntitySet Name="tblVerifyTimeLog" EntityType="AmidaModel.tblVerifyTimeLog" />
+          <EntitySet Name="tblVerifyTimeRef" EntityType="AmidaModel.tblVerifyTimeRef" />
+          <AssociationSet Name="FK_tblGroupMenu_tblMenu" Association="AmidaModel.FK_tblGroupMenu_tblMenu">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMenu_tblMenuGroup" Association="AmidaModel.FK_tblMenu_tblMenuGroup">
+            <End Role="tblMenuGroup" EntitySet="tblMenuGroup" />
+            <End Role="tblMenu" EntitySet="tblMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserGroup" Association="AmidaModel.FK_tblUser_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupMenu_tblUserGroup" Association="AmidaModel.FK_tblGroupMenu_tblUserGroup">
+            <End Role="tblUserGroup" EntitySet="tblUserGroup" />
+            <End Role="tblUserGroupMenu" EntitySet="tblUserGroupMenu" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PC_Rec_tbl">
+          <Key>
+            <PropertyRef Name="Idx" />
+          </Key>
+          <Property Name="Idx" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PC_ID" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="PC_org_status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="EQ_ID_for_PC" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_code_for_EQ" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_backreason" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="PC_tip_level" Type="Single" />
+          <Property Name="Currentmax_tip_size" Type="Single" />
+          <Property Name="Current_length_of_needle_body" Type="Single" />
+          <Property Name="Current_touchdown" Type="Int32" />
+          <Property Name="Current_times_of_adjusting_needle" Type="Int16" />
+          <Property Name="PC_ndl_position" Type="Int16" />
+          <Property Name="Modifier" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_ndl_pos_Modifier" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_comment" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PC_rec_time" Type="DateTime" Precision="3" />
+          <Property Name="PC_ndl_pos_rec_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PC_tbl">
+          <Key>
+            <PropertyRef Name="PC_ID" />
+          </Key>
+          <Property Name="PC_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="EQ_type_for_PC" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_Vendor" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_customer" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="EQ_ID_for_PC" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_cusimport_time" Type="DateTime" Precision="3" />
+          <Property Name="Current_Maintanence_time" Type="DateTime" Precision="3" />
+          <Property Name="PC_type" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_ndl_type" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_reset_times" Type="Int16" />
+          <Property Name="PC_vision" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_pcshp" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_pcmaker" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_pcmakenum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_pcbcode" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PC_pcbtype" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_singdual" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_spcnm" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PC_backreason" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="PC_tip_level" Type="Single" />
+          <Property Name="Currentmax_tip_size" Type="Single" />
+          <Property Name="Current_length_of_needle_body" Type="Single" />
+          <Property Name="Total_touchdown" Type="Int32" />
+          <Property Name="Current_touchdown" Type="Int32" />
+          <Property Name="Current_times_of_adjusting_needle" Type="Int16" />
+          <Property Name="Current_tip_epoxy" Type="Single" />
+          <Property Name="Current_tip_topcb" Type="Single" />
+          <Property Name="PC_ndl_position" Type="Int16" />
+          <Property Name="Modifier" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_ndl_pos_Modifier" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PC_ndl_pos_Maintanence_time" Type="DateTime" Precision="3" />
+          <Property Name="Into_WIN_time" Type="DateTime" Precision="3" />
+          <Property Name="Release_time" Type="DateTime" Precision="3" />
+          <Property Name="Scrap_time" Type="DateTime" Precision="3" />
+          <Property Name="PC_comment" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Status_changed_permission" Type="Byte" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblAlarm">
+          <Key>
+            <PropertyRef Name="identify" />
+          </Key>
+          <Property Name="identify" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="eq_id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="warning_message" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="warning_type" Type="Int32" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Precision="3" />
+          <Property Name="probe_card_id" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="WaferID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="eq_operator" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblEQ">
+          <Key>
+            <PropertyRef Name="eqi_id" />
+          </Key>
+          <Property Name="eqi_id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="eq_type" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="eq_prober" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="eq_tester" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="eq_release_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="eq_comment" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="lot_id" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="probe_card_id" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="recipe" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="operator" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="total_num_wafer" Type="Int32" Nullable="false" />
+          <Property Name="fab" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="tested_num_wafer" Type="Int32" Nullable="false" />
+          <Property Name="total_num_chip" Type="Int32" Nullable="false" />
+          <Property Name="tested_num_chip" Type="Int32" Nullable="false" />
+          <Property Name="current_test_wafer_id" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="IsWarnig" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="current_identify" Type="Int64" />
+          <Property Name="expected_remain_time" Type="Int32" />
+          <Property Name="current_warning_identify" Type="Int32" />
+          <Property Name="eq_area" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="wafer_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="over_drive" Type="Double" />
+          <Property Name="sub_status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblEQHistory">
+          <Key>
+            <PropertyRef Name="identify" />
+          </Key>
+          <Property Name="identify" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="eq_id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="lot_id" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="probe_card_id" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="recipe" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="total_num_wafer" Type="Int32" />
+          <Property Name="operator" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="stop_time" Type="DateTime" Precision="3" />
+          <Property Name="eq_comment" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsFinish" Type="Boolean" Nullable="false" />
+          <Property Name="tested_num_wafer" Type="Int32" />
+          <Property Name="wafer_id_in" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="wafer_id_out" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="over_drive" Type="Double" />
+          <Property Name="over_drive_in" Type="Double" />
+          <Property Name="over_drive_out" Type="Double" />
+          <Property Name="sub_status" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblMaskInfo">
+          <Key>
+            <PropertyRef Name="MaskID" />
+          </Key>
+          <Property Name="MaskID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="true" />
+          <Property Name="Customer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RFDC" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PF" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sponsor" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuGroupID" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="XAML" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUserGroupMenu" Relationship="AmidaModel.FK_tblGroupMenu_tblMenu" FromRole="tblMenu" ToRole="tblUserGroupMenu" />
+          <NavigationProperty Name="tblMenuGroup" Relationship="AmidaModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenu" ToRole="tblMenuGroup" />
+        </EntityType>
+        <EntityType Name="tblMenuGroup">
+          <Key>
+            <PropertyRef Name="MenuGroupID" />
+          </Key>
+          <Property Name="MenuGroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MenuOrder" Type="Int32" />
+          <NavigationProperty Name="tblMenu" Relationship="AmidaModel.FK_tblMenu_tblMenuGroup" FromRole="tblMenuGroup" ToRole="tblMenu" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUserGroup" Relationship="AmidaModel.FK_tblUser_tblUserGroup" FromRole="tblUser" ToRole="tblUserGroup" />
+        </EntityType>
+        <EntityType Name="tblUserGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUser" Relationship="AmidaModel.FK_tblUser_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUser" />
+          <NavigationProperty Name="tblUserGroupMenu" Relationship="AmidaModel.FK_tblGroupMenu_tblUserGroup" FromRole="tblUserGroup" ToRole="tblUserGroupMenu" />
+        </EntityType>
+        <EntityType Name="tblUserGroupMenu">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="IsAllow" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblMenu" Relationship="AmidaModel.FK_tblGroupMenu_tblMenu" FromRole="tblUserGroupMenu" ToRole="tblMenu" />
+          <NavigationProperty Name="tblUserGroup" Relationship="AmidaModel.FK_tblGroupMenu_tblUserGroup" FromRole="tblUserGroupMenu" ToRole="tblUserGroup" />
+        </EntityType>
+        <EntityType Name="tblVerifyNote">
+          <Key>
+            <PropertyRef Name="SeqNo" />
+          </Key>
+          <Property Name="SeqNo" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PCID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="WaferID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TestVerify" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TestVerifyDate" Type="DateTime" Precision="3" />
+          <Property Name="TPS" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MAP" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RCP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Operators" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="StartTimes" Type="DateTime" Precision="3" />
+          <Property Name="StopTimes" Type="DateTime" Precision="3" />
+          <Property Name="TouchDo" Type="Int64" />
+          <Property Name="Pass" Type="Int32" />
+          <Property Name="Fail" Type="Int32" />
+          <Property Name="HasWarning" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ProbeShape" Type="Int32" />
+          <Property Name="over_drive" Type="Double" />
+        </EntityType>
+        <EntityType Name="tblVerifyTimeLog">
+          <Key>
+            <PropertyRef Name="SeqNo" />
+          </Key>
+          <Property Name="SeqNo" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MaskID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Minute" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVerifyTimeRef">
+          <Key>
+            <PropertyRef Name="MaskID" />
+          </Key>
+          <Property Name="MaskID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Minutes" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblGroupMenu_tblMenu">
+          <End Role="tblMenu" Type="AmidaModel.tblMenu" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="AmidaModel.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMenu_tblMenuGroup">
+          <End Role="tblMenuGroup" Type="AmidaModel.tblMenuGroup" Multiplicity="1" />
+          <End Role="tblMenu" Type="AmidaModel.tblMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenuGroup">
+              <PropertyRef Name="MenuGroupID" />
+            </Principal>
+            <Dependent Role="tblMenu">
+              <PropertyRef Name="MenuGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserGroup">
+          <End Role="tblUserGroup" Type="AmidaModel.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUser" Type="AmidaModel.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupMenu_tblUserGroup">
+          <End Role="tblUserGroup" Type="AmidaModel.tblUserGroup" Multiplicity="1" />
+          <End Role="tblUserGroupMenu" Type="AmidaModel.tblUserGroupMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUserGroupMenu">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AmidaModelStoreContainer" CdmEntityContainer="AmidaEntities">
+          <EntitySetMapping Name="PC_Rec_tbl">
+            <EntityTypeMapping TypeName="AmidaModel.PC_Rec_tbl">
+              <MappingFragment StoreEntitySet="PC_Rec_tbl">
+                <ScalarProperty Name="Idx" ColumnName="Idx" />
+                <ScalarProperty Name="PC_ID" ColumnName="PC_ID" />
+                <ScalarProperty Name="PC_org_status" ColumnName="PC_org_status" />
+                <ScalarProperty Name="PC_status" ColumnName="PC_status" />
+                <ScalarProperty Name="EQ_ID_for_PC" ColumnName="EQ_ID_for_PC" />
+                <ScalarProperty Name="PC_code_for_EQ" ColumnName="PC_code_for_EQ" />
+                <ScalarProperty Name="PC_backreason" ColumnName="PC_backreason" />
+                <ScalarProperty Name="PC_tip_level" ColumnName="PC_tip_level" />
+                <ScalarProperty Name="Currentmax_tip_size" ColumnName="Currentmax_tip_size" />
+                <ScalarProperty Name="Current_length_of_needle_body" ColumnName="Current_length_of_needle_body" />
+                <ScalarProperty Name="Current_touchdown" ColumnName="Current_touchdown" />
+                <ScalarProperty Name="Current_times_of_adjusting_needle" ColumnName="Current_times_of_adjusting_needle" />
+                <ScalarProperty Name="PC_ndl_position" ColumnName="PC_ndl_position" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="PC_ndl_pos_Modifier" ColumnName="PC_ndl_pos_Modifier" />
+                <ScalarProperty Name="PC_comment" ColumnName="PC_comment" />
+                <ScalarProperty Name="PC_rec_time" ColumnName="PC_rec_time" />
+                <ScalarProperty Name="PC_ndl_pos_rec_time" ColumnName="PC_ndl_pos_rec_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PC_tbl">
+            <EntityTypeMapping TypeName="AmidaModel.PC_tbl">
+              <MappingFragment StoreEntitySet="PC_tbl">
+                <ScalarProperty Name="PC_ID" ColumnName="PC_ID" />
+                <ScalarProperty Name="EQ_type_for_PC" ColumnName="EQ_type_for_PC" />
+                <ScalarProperty Name="PC_Vendor" ColumnName="PC_Vendor" />
+                <ScalarProperty Name="PC_status" ColumnName="PC_status" />
+                <ScalarProperty Name="PC_customer" ColumnName="PC_customer" />
+                <ScalarProperty Name="EQ_ID_for_PC" ColumnName="EQ_ID_for_PC" />
+                <ScalarProperty Name="PC_cusimport_time" ColumnName="PC_cusimport_time" />
+                <ScalarProperty Name="Current_Maintanence_time" ColumnName="Current_Maintanence_time" />
+                <ScalarProperty Name="PC_type" ColumnName="PC_type" />
+                <ScalarProperty Name="PC_ndl_type" ColumnName="PC_ndl_type" />
+                <ScalarProperty Name="PC_reset_times" ColumnName="PC_reset_times" />
+                <ScalarProperty Name="PC_vision" ColumnName="PC_vision" />
+                <ScalarProperty Name="PC_pcshp" ColumnName="PC_pcshp" />
+                <ScalarProperty Name="PC_pcmaker" ColumnName="PC_pcmaker" />
+                <ScalarProperty Name="PC_pcmakenum" ColumnName="PC_pcmakenum" />
+                <ScalarProperty Name="PC_pcbcode" ColumnName="PC_pcbcode" />
+                <ScalarProperty Name="PC_pcbtype" ColumnName="PC_pcbtype" />
+                <ScalarProperty Name="PC_singdual" ColumnName="PC_singdual" />
+                <ScalarProperty Name="PC_spcnm" ColumnName="PC_spcnm" />
+                <ScalarProperty Name="PC_backreason" ColumnName="PC_backreason" />
+                <ScalarProperty Name="PC_tip_level" ColumnName="PC_tip_level" />
+                <ScalarProperty Name="Currentmax_tip_size" ColumnName="Currentmax_tip_size" />
+                <ScalarProperty Name="Current_length_of_needle_body" ColumnName="Current_length_of_needle_body" />
+                <ScalarProperty Name="Total_touchdown" ColumnName="Total_touchdown" />
+                <ScalarProperty Name="Current_touchdown" ColumnName="Current_touchdown" />
+                <ScalarProperty Name="Current_times_of_adjusting_needle" ColumnName="Current_times_of_adjusting_needle" />
+                <ScalarProperty Name="Current_tip_epoxy" ColumnName="Current_tip_epoxy" />
+                <ScalarProperty Name="Current_tip_topcb" ColumnName="Current_tip_topcb" />
+                <ScalarProperty Name="PC_ndl_position" ColumnName="PC_ndl_position" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="PC_ndl_pos_Modifier" ColumnName="PC_ndl_pos_Modifier" />
+                <ScalarProperty Name="PC_ndl_pos_Maintanence_time" ColumnName="PC_ndl_pos_Maintanence_time" />
+                <ScalarProperty Name="Into_WIN_time" ColumnName="Into_WIN_time" />
+                <ScalarProperty Name="Release_time" ColumnName="Release_time" />
+                <ScalarProperty Name="Scrap_time" ColumnName="Scrap_time" />
+                <ScalarProperty Name="PC_comment" ColumnName="PC_comment" />
+                <ScalarProperty Name="Status_changed_permission" ColumnName="Status_changed_permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AmidaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAlarm">
+            <EntityTypeMapping TypeName="AmidaModel.tblAlarm">
+              <MappingFragment StoreEntitySet="tblAlarm">
+                <ScalarProperty Name="identify" ColumnName="identify" />
+                <ScalarProperty Name="eq_id" ColumnName="eq_id" />
+                <ScalarProperty Name="warning_message" ColumnName="warning_message" />
+                <ScalarProperty Name="warning_type" ColumnName="warning_type" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="probe_card_id" ColumnName="probe_card_id" />
+                <ScalarProperty Name="WaferID" ColumnName="WaferID" />
+                <ScalarProperty Name="eq_operator" ColumnName="eq_operator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEQ">
+            <EntityTypeMapping TypeName="AmidaModel.tblEQ">
+              <MappingFragment StoreEntitySet="tblEQ">
+                <ScalarProperty Name="eqi_id" ColumnName="eqi_id" />
+                <ScalarProperty Name="eq_type" ColumnName="eq_type" />
+                <ScalarProperty Name="eq_prober" ColumnName="eq_prober" />
+                <ScalarProperty Name="eq_tester" ColumnName="eq_tester" />
+                <ScalarProperty Name="eq_release_time" ColumnName="eq_release_time" />
+                <ScalarProperty Name="eq_comment" ColumnName="eq_comment" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="lot_id" ColumnName="lot_id" />
+                <ScalarProperty Name="probe_card_id" ColumnName="probe_card_id" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="recipe" ColumnName="recipe" />
+                <ScalarProperty Name="operator" ColumnName="operator" />
+                <ScalarProperty Name="total_num_wafer" ColumnName="total_num_wafer" />
+                <ScalarProperty Name="fab" ColumnName="fab" />
+                <ScalarProperty Name="tested_num_wafer" ColumnName="tested_num_wafer" />
+                <ScalarProperty Name="total_num_chip" ColumnName="total_num_chip" />
+                <ScalarProperty Name="tested_num_chip" ColumnName="tested_num_chip" />
+                <ScalarProperty Name="current_test_wafer_id" ColumnName="current_test_wafer_id" />
+                <ScalarProperty Name="IsWarnig" ColumnName="IsWarnig" />
+                <ScalarProperty Name="current_identify" ColumnName="current_identify" />
+                <ScalarProperty Name="expected_remain_time" ColumnName="expected_remain_time" />
+                <ScalarProperty Name="current_warning_identify" ColumnName="current_warning_identify" />
+                <ScalarProperty Name="eq_area" ColumnName="eq_area" />
+                <ScalarProperty Name="wafer_id" ColumnName="wafer_id" />
+                <ScalarProperty Name="over_drive" ColumnName="over_drive" />
+                <ScalarProperty Name="sub_status" ColumnName="sub_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEQHistory">
+            <EntityTypeMapping TypeName="AmidaModel.tblEQHistory">
+              <MappingFragment StoreEntitySet="tblEQHistory">
+                <ScalarProperty Name="identify" ColumnName="identify" />
+                <ScalarProperty Name="eq_id" ColumnName="eq_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="lot_id" ColumnName="lot_id" />
+                <ScalarProperty Name="probe_card_id" ColumnName="probe_card_id" />
+                <ScalarProperty Name="recipe" ColumnName="recipe" />
+                <ScalarProperty Name="total_num_wafer" ColumnName="total_num_wafer" />
+                <ScalarProperty Name="operator" ColumnName="operator" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="stop_time" ColumnName="stop_time" />
+                <ScalarProperty Name="eq_comment" ColumnName="eq_comment" />
+                <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />
+                <ScalarProperty Name="tested_num_wafer" ColumnName="tested_num_wafer" />
+                <ScalarProperty Name="wafer_id_in" ColumnName="wafer_id_in" />
+                <ScalarProperty Name="wafer_id_out" ColumnName="wafer_id_out" />
+                <ScalarProperty Name="over_drive" ColumnName="over_drive" />
+                <ScalarProperty Name="over_drive_in" ColumnName="over_drive_in" />
+                <ScalarProperty Name="over_drive_out" ColumnName="over_drive_out" />
+                <ScalarProperty Name="sub_status" ColumnName="sub_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMaskInfo">
+            <EntityTypeMapping TypeName="AmidaModel.tblMaskInfo">
+              <MappingFragment StoreEntitySet="tblMaskInfo">
+                <ScalarProperty Name="MaskID" ColumnName="MaskID" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="RFDC" ColumnName="RFDC" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenu">
+            <EntityTypeMapping TypeName="AmidaModel.tblMenu">
+              <MappingFragment StoreEntitySet="tblMenu">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="XAML" ColumnName="XAML" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenuGroup">
+            <EntityTypeMapping TypeName="AmidaModel.tblMenuGroup">
+              <MappingFragment StoreEntitySet="tblMenuGroup">
+                <ScalarProperty Name="MenuGroupID" ColumnName="MenuGroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="AmidaModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserGroup">
+            <EntityTypeMapping TypeName="AmidaModel.tblUserGroup">
+              <MappingFragment StoreEntitySet="tblUserGroup">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserGroupMenu">
+            <EntityTypeMapping TypeName="AmidaModel.tblUserGroupMenu">
+              <MappingFragment StoreEntitySet="tblUserGroupMenu">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="IsAllow" ColumnName="IsAllow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVerifyNote">
+            <EntityTypeMapping TypeName="AmidaModel.tblVerifyNote">
+              <MappingFragment StoreEntitySet="tblVerifyNote">
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="PCID" ColumnName="PCID" />
+                <ScalarProperty Name="WaferID" ColumnName="WaferID" />
+                <ScalarProperty Name="TestVerify" ColumnName="TestVerify" />
+                <ScalarProperty Name="TestVerifyDate" ColumnName="TestVerifyDate" />
+                <ScalarProperty Name="TPS" ColumnName="TPS" />
+                <ScalarProperty Name="MAP" ColumnName="MAP" />
+                <ScalarProperty Name="RCP" ColumnName="RCP" />
+                <ScalarProperty Name="Operators" ColumnName="Operators" />
+                <ScalarProperty Name="StartTimes" ColumnName="StartTimes" />
+                <ScalarProperty Name="StopTimes" ColumnName="StopTimes" />
+                <ScalarProperty Name="TouchDo" ColumnName="TouchDo" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Fail" ColumnName="Fail" />
+                <ScalarProperty Name="HasWarning" ColumnName="HasWarning" />
+                <ScalarProperty Name="ProbeShape" ColumnName="ProbeShape" />
+                <ScalarProperty Name="over_drive" ColumnName="over_drive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVerifyTimeLog">
+            <EntityTypeMapping TypeName="AmidaModel.tblVerifyTimeLog">
+              <MappingFragment StoreEntitySet="tblVerifyTimeLog">
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="MaskID" ColumnName="MaskID" />
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVerifyTimeRef">
+            <EntityTypeMapping TypeName="AmidaModel.tblVerifyTimeRef">
+              <MappingFragment StoreEntitySet="tblVerifyTimeRef">
+                <ScalarProperty Name="MaskID" ColumnName="MaskID" />
+                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

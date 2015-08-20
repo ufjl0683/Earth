@@ -170,6 +170,9 @@
     <None Include="Service References\WebService\slAmidaConsole.WebService.IsUserLoginResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WebService\slAmidaConsole.WebService.LogoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\WebService\slAmidaConsole.WebService.RegisterSessionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -179,7 +182,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\WebService\WebService1.disco" />
     <None Include="Properties\OutOfBrowserSettings.xml" />
     <None Include="Service References\AmidaService\configuration91.svcinfo" />
     <None Include="Service References\AmidaService\configuration.svcinfo" />
@@ -187,12 +189,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\WebService\WebService.disco" />
     <Content Include="WANA.png" />
     <Content Include="TESTER.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Service References\WebService\WebService1.wsdl" />
+    <None Include="Service References\WebService\WebService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

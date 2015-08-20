@@ -187,6 +187,11 @@ namespace slDBManager.Report.Wafer
             this.BusyIndicator1.IsBusy = true;
             lo.Completed += (s, a) =>
             {
+                if (lo.Error != null)
+                {
+                    MessageBox.Show(lo.Error.Message);
+                    return;
+                }
                 this.BusyIndicator1.IsBusy = false;
                 this.dataGrid1.ItemsSource = lo.Value;
                 if (IsShowChart)

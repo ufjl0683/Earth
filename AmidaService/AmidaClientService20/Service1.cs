@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Net;
 using System.ServiceProcess;
 using System.Text;
 
@@ -27,6 +28,9 @@ namespace AmidaClientService20
                 Util.WriteEventLog(AppDomain.CurrentDomain.BaseDirectory + "ServerConfig.txt");
                 DestIP = args[0];
             }
+
+           
+
             thread = new AmidaClientService20.AmidaClientExportThread();
         }
 

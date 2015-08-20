@@ -36,8 +36,10 @@ namespace slAmidaConsole.Web
                      {
                          Lot_ID = n.lot_id,
                          Num_Tested_Wafer = n.tested_num_wafer,
-                          Wafer_ID=n.wafer_id_out,
-                         OD = n.over_drive_out,
+                          Wafer_ID_OUT=n.wafer_id_out,
+                          Wafer_ID_IN=n.wafer_id_in,
+                         OD_OUT = n.over_drive_out,
+                         OD_IN = n.over_drive_in,
                          Operator = n.@operator,
                          RCP = n.eq_id,
                          TimeStamp = n.start_time,
@@ -46,8 +48,9 @@ namespace slAmidaConsole.Web
                          NeedleLength=null,
                           NeedleStatus="",
                           status=n.status,
-                           Comment="" ,
+                           Comment="",
                          recipe=n.recipe
+                          
 
 
                      }).Union(
@@ -58,8 +61,12 @@ namespace slAmidaConsole.Web
                       {
                           Lot_ID = "",
                           Num_Tested_Wafer = 0,
-                          Wafer_ID = "",
-                          OD =null,
+                         
+                          Wafer_ID_OUT = "",
+                          Wafer_ID_IN = "",
+                       
+                          OD_OUT =null,
+                          OD_IN = null,
                           Operator =n1.Modifier,
                           RCP = "",
                           TimeStamp = n1.PC_rec_time,
@@ -78,7 +85,7 @@ namespace slAmidaConsole.Web
 
             string html="<table id=\"tblProbecardWorkSheet\"><thead><tr>";
 
-            html += " <th>TimeStamp</th><th>Lot_ID</th><th>Wafer_ID</th><th>T/V</th><th>#</th><th>RCP</th><th>recipe</th><th>OD</th><th>Operator</th><th>針身</th><th>針點</th><th>卡況</th><th >備註</th>";
+            html += " <th>TimeStamp</th><th>Lot_ID</th><th>Wafer_ID_In</th><th>Wafer_ID_Out</th><th>T/V</th><th>#</th><th>RCP</th><th>recipe</th><th>OD_In</th><th>OD_Out</th><th>Operator</th><th>針身</th><th>針點</th><th>卡況</th><th >備註</th>";
 
 
             html += "</th></thead>";
@@ -100,13 +107,17 @@ namespace slAmidaConsole.Web
 
                 html +="<td>"+ ((log.TimeStamp == null) ? "" : ((DateTime)log.TimeStamp).ToString("yyyy-MM-dd HH:mm:ss"))+"</td>";
                 html+="<td>"+(log.Lot_ID==null?"":log.Lot_ID.ToString())+"</td>" ;
-                html+="<td>"+( log.Wafer_ID == null ? "" : log.Wafer_ID.ToString() )+"</td>";
+                html+="<td>"+( log.Wafer_ID_IN == null ? "" : log.Wafer_ID_IN.ToString() )+"</td>";
+                html += "<td>" + (log.Wafer_ID_OUT == null ? "" : log.Wafer_ID_OUT.ToString()) + "</td>";
+
                // html += "<td>" + (log.status == null ? "" : log.status.ToString()) + "</td>";
                 html += "<td>" + log.T_V + "</td>";
                 html += "<td>" + tested_wafer_acc_num + "</td>";     //    (log.Num_Tested_Wafer == null ? "" : log.Num_Tested_Wafer.ToString()) + "</td>";
                 html+= "<td>"+(log.RCP == null ? "" : log.RCP.ToString()  )+"</td>";
                 html += "<td>" + (log.recipe == null ? "" : log.recipe.ToString()) + "</td>";
-                html+= "<td>"+( log.OD == null ? "" : log.OD.ToString()  )+"</td>";
+                html+= "<td>"+( log.OD_IN == null ? "" : log.OD_IN.ToString()  )+"</td>";
+                html += "<td>" + (log.OD_OUT == null ? "" : log.OD_OUT.ToString()) + "</td>";
+
                 html+= "<td>"+( log.Operator == null ? "" : log.Operator.ToString() )+"</td>";
                 html += "<td>" + (log.NeedleBody == null ? "" : string.Format("{0:0.00}", log.NeedleBody)) + "</td>";
                 html+= "<td>"+( log.NeedleLength == null ? "" : string.Format("{0:0.00}",log.NeedleLength ))+"</td>";

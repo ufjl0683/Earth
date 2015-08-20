@@ -16,12 +16,12 @@
             </customBinding>
         </bindings>
         <client>
-            <endpoint address="http://127.0.0.1:54496/WebService.asmx" binding="basicHttpBinding"
-                bindingConfiguration="WebServiceSoap" contract="WebService.WebServiceSoap"
-                name="WebServiceSoap" />
             <endpoint address="net.tcp://localhost:4502/" binding="customBinding"
                 bindingConfiguration="CustomBinding_IAmidaService" contract="AmidaService.IAmidaService"
                 name="CustomBinding_IAmidaService" />
+            <endpoint address="http://localhost:54496/WebService.asmx" binding="basicHttpBinding"
+                bindingConfiguration="WebServiceSoap" contract="WebService.WebServiceSoap"
+                name="WebServiceSoap" />
         </client>
     </system.serviceModel>
 </configuration>

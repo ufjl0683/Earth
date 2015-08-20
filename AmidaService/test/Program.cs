@@ -6,11 +6,13 @@ using System.ServiceModel;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
-using System.Linq;
-using System.Dynamic;
-using System.Diagnostics;
- 
+using System.Linq; using System.Diagnostics;
 
+using System.ComponentModel;
+ 
+using System.Data;
+using System.Linq;
+ 
 namespace test
 {
 
@@ -35,56 +37,104 @@ namespace test
     {
         static void Main(string[] args)
         {
-            string res = "[0000000I: skwerewr @recpipename][eee]";
-            if (!res.StartsWith("[0000000I:"))
-                return;
+     //       string res = "[0000000I: skwerewr @recpipename][eee]";
+     //       if (!res.StartsWith("[0000000I:"))
+     //           return;
 
-            else
-            {
+     //       else
+     //       {
 
-                int startpos, endpos;
-                startpos = res.IndexOf('@');
-                endpos = res.IndexOf(']');
-                if (startpos == -1 || endpos == -1)
-                    return;
-                string ReceipeID = res.Substring(startpos + 1, endpos - startpos - 1);  // res.Split(new char[] { '@' })[1].Trim(new char[] { ']' });
-                //處理 Receipe ID here
-                Console.WriteLine( "Success:" + ReceipeID);
+     //           int startpos, endpos;
+     //           startpos = res.IndexOf('@');
+     //           endpos = res.IndexOf(']');
+     //           if (startpos == -1 || endpos == -1)
+     //               return;
+     //           string ReceipeID = res.Substring(startpos + 1, endpos - startpos - 1);  // res.Split(new char[] { '@' })[1].Trim(new char[] { ']' });
+     //           //處理 Receipe ID here
+     //           Console.WriteLine( "Success:" + ReceipeID);
 
-            }
+     //       }
+     //       Console.ReadKey();
+     //       string EQPID = "RCP-031";
+     //       System.IO.Directory.CreateDirectory("c:\\test\\PCM123\\import");
+
+     //       if (EQPID.StartsWith("RCP"))
+     //       {
+     //           try
+     //           {
+     //               EQPID = "RCP-" + int.Parse(EQPID.Split(new char[] { '-' })[1]);
+     //           }
+     //           catch (Exception ex)
+     //           {
+     //               Console.WriteLine(ex.Message + "," + ex.StackTrace);
+
+     //           }
+
+     //          Console.WriteLine( "Fail:RCP name illegal!");
+     //       }
+
+     //    //   Console.WriteLine(DateTime.Now.ToLongDateString());
+     //       //string s = "012-34567890123";
+     //       //Console.WriteLine(s.IndexOf('-', s.IndexOf('-') + 1));
+
+     //       WIP_Data[] data = GetWIP("PT", "");
+     //       WIP_Data[] data1 = (from x in data where x.MaskID == "BP602" select x).ToArray();
+     //       //Console.WriteLine(data1.Length);
+     //   //   string xml=  GetCancelXmlRequest("memo", "partid", "productid", "routeid", "openo");
+     //   //Console.WriteLine(xml);
+     //      // SetTrackIn("AP428P326-06", "Multi-AP428-200","LAD-1");
+     ////       SetCompleted("AH770P102-05");
+     //  //   string res=  AutoMes("IN","aa","AS370-1.000","trk-07", "190.0300");
+     // //    Console.WriteLine(res);
+            GetPerformanceTotalBySql("it.Start_Time >= @p0 and it.Start_Time <@p1 and it.stop_time >=@p0 and it.stop_time <@p1", new DateTime(2015, 7, 1), new DateTime(2015, 7, 2)); 
+                  
             Console.ReadKey();
-            string EQPID = "RCP-031";
-            System.IO.Directory.CreateDirectory("c:\\test\\PCM123\\import");
+        }
 
-            if (EQPID.StartsWith("RCP"))
+
+         
+
+
+        public static  void GetPerformanceTotalBySql(string sql, DateTime Startimes, DateTime StopTimes)
+        {
+            // this.ObjectContext.tblVerifyNote.
+            // slAmidaConsole.Web.AmidaEntities db = new AmidaEntities();
+            //  var a =  this.ObjectContext.tblVerifyNote.Where("StartTimes< @p0",new System.Data.Objects.ObjectParameter("p0",new DateTime(2013,4,16)));
+
+            //   a.ToArray();
+            test.AmidaEntities ObjectContext = new AmidaEntities();
+            try
             {
-                try
-                {
-                    EQPID = "RCP-" + int.Parse(EQPID.Split(new char[] { '-' })[1]);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                Console.WriteLine("begin!!"+DateTime.Now.ToString());
+               //     ObjectContext.tblEQHistory.Where(
 
-                }
+                //var q = from n in ObjectContext.tblEQHistory.Where(sql, new System.Data.Objects.ObjectParameter("p0", Startimes), new System.Data.Objects.ObjectParameter("p1", StopTimes))
+                var q = from n in ObjectContext.tblEQHistory
+                        where n.start_time > new DateTime(2015, 7, 1) && n.stop_time < new DateTime(2015, 7, 2)
+                        group n by n.@operator into g
 
-               Console.WriteLine( "Fail:RCP name illegal!");
+                        select new
+                        {
+                            Operator = g.Key,
+                            ProductTotal = g.Count(p => p.status == "Product"),
+                            VerifyTotal = g.Count(p => p.status == "Verify"),
+                            Total = g.Count(p => p.status == "Product" || p.status == "Verify")
+                        };
+                      //  select n;
+
+                Console.WriteLine("foreach!!" + DateTime.Now.ToString());
+                    foreach (var d in q)
+                    {
+                        Console.WriteLine(d.Operator+","+ d.ProductTotal);
+                    }
+
+                    Console.WriteLine("end!!" + DateTime.Now.ToString());
+                }
+            
+            catch (Exception ex)
+            {
+                throw ex;
             }
-
-         //   Console.WriteLine(DateTime.Now.ToLongDateString());
-            //string s = "012-34567890123";
-            //Console.WriteLine(s.IndexOf('-', s.IndexOf('-') + 1));
-
-            WIP_Data[] data = GetWIP("PT", "");
-            WIP_Data[] data1 = (from x in data where x.MaskID == "BP602" select x).ToArray();
-            //Console.WriteLine(data1.Length);
-        //   string xml=  GetCancelXmlRequest("memo", "partid", "productid", "routeid", "openo");
-        //Console.WriteLine(xml);
-           // SetTrackIn("AP428P326-06", "Multi-AP428-200","LAD-1");
-     //       SetCompleted("AH770P102-05");
-       //   string res=  AutoMes("IN","aa","AS370-1.000","trk-07", "190.0300");
-      //    Console.WriteLine(res);
-            Console.ReadKey();
         }
 
         public static  string AutoMes(string INOUT, string userid, string partid, string eqpid, string openo)

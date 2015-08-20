@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using RemoteInterface;
 using System.Configuration;
+using System.Net;
 
 namespace Notifier
 {
@@ -28,14 +29,19 @@ namespace Notifier
             InitializeComponent();
             try
             {
-                SettingsProperty temp = Properties.Settings.Default.Properties["MachineName"];
-                MachineName = temp.DefaultValue.ToString();
+                
+                //SettingsProperty temp = Properties.Settings.Default.Properties["MachineName"];
+                //MachineName = temp.DefaultValue.ToString();
+                MachineName = Properties.Settings.Default.MachineName;
+                if(MachineName.ToUpper()=="TEST")
+                    MachineName = System.Environment.MachineName;
             }
             catch
             {
                 MachineName = System.Environment.MachineName;
             }
- 
+
+           // MessageBox.Show(MachineName);
          //   this.dataGridView1.Columns[0].HeaderCell.SortGlyphDirection = SortOrder.Descending;
         
         }
@@ -282,8 +288,25 @@ namespace Notifier
 
             (sender as Timer).Stop();
          //   (sender as Timer).Enabled = false;
+            IPHostEntry hostEntry;
+
+            hostEntry = Dns.GetHostEntry(Properties.Settings.Default.ServiceIP);
+            string DestIP ="";
+
+            foreach( var  entry in hostEntry.AddressList)
+            {
+                if(!(entry.IsIPv6LinkLocal || entry.IsIPv6Multicast || entry.IsIPv6SiteLocal))
+                {
+                    DestIP=entry.ToString();
+                    NotifyMessage mesg = new NotifyMessage() { TimeStamp = DateTime.Now, title = "SYS", text = "Get Server IP " + DestIP };
+                    this.BeginInvoke(new InvokeDelegate(InvokeTask), mesg);
+                    break;
+                }
+
+            }
+         //   = hostEntry.AddressList[0].ToString();
             nClient = new RemoteInterface.EventNotifyClient(
-        Properties.Settings.Default.ServiceIP, 9091, true
+             DestIP, 9091, true
        );
             nClient.OnEvent += new RemoteInterface.NotifyEventHandler(nClient_OnEvent);
             nClient.OnConnect += new RemoteInterface.OnConnectEventHandler(nClient_OnConnect);

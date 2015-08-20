@@ -25,7 +25,7 @@
 
          );
 
-         fnShowHide(12);
+         fnShowHide(14);
 
 
      });
@@ -61,7 +61,7 @@
       PCID: <input type="text" name="PCID" id="PCID" size="50"  
              />
      <input type="submit" />
-     <input type="button" id="HideShow"  value="隱藏備註" onclick="fnShowHide(12)" />
+     <input type="button" id="HideShow"  value="隱藏備註" onclick="fnShowHide(14)" />
     </form>
     <asp:Label ID="Label1" runat="server"  ></asp:Label><br />
     <div id="dvTable"  runat="server" >

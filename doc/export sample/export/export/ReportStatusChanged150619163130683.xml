@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ReportStatusChangedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <eq_id>SSHMC610</eq_id>
+  <eq_status>Idle</eq_status>
+  <lot_id>BH119C-P001</lot_id>
+  <probe_card_id>BH1192011QS0BMV0031</probe_card_id>
+  <recipe>BH119V_A3KQ_V05.tps</recipe>
+  <fab>FAB-2</fab>
+  <eq_operator>02515</eq_operator>
+  <total_num_wafer>0</total_num_wafer>
+  <wafer_id></wafer_id>
+  <over_drive>0.00</over_drive>
+  <sub_status>SB0</sub_status>
+  <start_time>2015-06-19T16:31:30.0000000+08:00</start_time>
+</ReportStatusChangedData>

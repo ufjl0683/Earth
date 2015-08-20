@@ -28,6 +28,79 @@ namespace AmidaServerService
         }
 
 
+        public ConfigInfo GetConfig2(string OPID, string PCID, string SM, string TestMode, string LotID, string Wafer, string FP, string RCP)
+        {
+            try
+            {
+                string[] splits = LotID.Split(new char[] { '-' });
+                string MaskID = splits[0];
+                LotID = splits[1];
+                string Mask = MaskID.Substring(0, 5);  //PCID.Substring(0, 5);
+
+                //  string Mask_M = MaskID;   //
+                string temp15, temp17, temp18;
+                if (PCID[15] >= '0' && PCID[15] <= '9')  //is digit
+                    temp15 = "";
+                else
+                    temp15 = "V";
+                if (PCID[17] == '0')
+                    temp17 = "";
+                else if (PCID[17] == '3')
+                    temp17 = "X";
+                else if (PCID[17] == '4')
+                    temp17 = "Y";
+                else if (PCID[17] == '5')
+                    temp17 = "Z";
+                else
+                    temp17 = "";
+
+                if (PCID[18] == '1')
+                    temp18 = "";
+                else if (PCID[18] >= 'A' && PCID[18] <= 'W')
+                    temp18 = PCID[18].ToString();
+                else
+                    temp18 = "";
+
+                string Mask_M, ini = "", FileName = "";
+
+                Mask_M = Mask + temp15 + temp17 + temp18;
+
+                if (SM == "S")
+                {
+
+
+                    ini = Mask_M + ".ini";
+
+                    FileName = Mask_M + "-" + LotID;
+                }
+                else if (SM == "M")
+                {
+                    // ini = MaskID + "-" + LotID + ".ini";
+                    ini = Mask_M + "-" + LotID + ".ini";
+                    FileName = Mask_M + "-" + LotID;
+                    string[] seqs = Wafer.Split(new char[] { ',' });
+                    string res = (from n in seqs where n.Trim() == LotID.Substring(LotID.Length - 2, 2) select n).FirstOrDefault();
+                    if (res == null)
+                        return new ConfigInfo() { ErrorMessage = "multi map compare  fail!" };
+                }
+                else
+                    new ConfigInfo() { ErrorMessage = "Unknown SM mode!" };
+
+                string Shape = PCID[9].ToString();
+                if (OPID == "99999")
+                    return new ConfigInfo() { Ini = ini, Mask = Mask, RCP = RCP, Shape = Shape, GoTest = "Error Message test!", FileName = FileName };
+
+                return new ConfigInfo() { Ini = ini, Mask = Mask, RCP = RCP, Shape = Shape, GoTest = "Go", FileName = FileName };
+            }
+
+            catch (Exception ex)
+            {
+                return new ConfigInfo() { ErrorMessage = ex.Message + "," + ex.StackTrace };
+            }
+
+                //Mask = Mask + "V" + MaskID.Substring(5, MaskID.Length - 5);
+        }
+
         public ConfigInfo GetConfig(string OPID, string PCID, string SM, string TestMode, string LotID, string Wafer, string FP, string RCP)
         {
             try
@@ -71,6 +144,9 @@ namespace AmidaServerService
                      Mask = Mask + "F";
                     Mask_M = Mask_M + "F"; 
                 }
+                
+
+
                 string Shape = PCID[9].ToString();
 
                 string ini = "",FileName="";

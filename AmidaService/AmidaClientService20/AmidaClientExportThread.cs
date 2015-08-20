@@ -10,6 +10,7 @@ using RemoteInterface;
 
 using System.Collections;
 using AmidaClientService20.Messages;
+using System.Net;
 
 namespace AmidaClientService20
 {
@@ -39,9 +40,25 @@ namespace AmidaClientService20
 
         public AmidaClientExportThread(string MachineName,string BaseDirectory)
         {
+
             this.MachineName = MachineName;
             this.BaseDirectory = BaseDirectory;
+            IPHostEntry hostEntry;
+         //   string TempIP = "";
 
+          //  TempIP = AmidaClientService20.Service.DestIP;
+
+            hostEntry = Dns.GetHostEntry(AmidaClientService20.Service.DestIP);
+
+
+          //  AmidaClientService20.Service.DestIP = hostEntry.AddressList[0].ToString();
+             foreach(IPAddress ip in hostEntry.AddressList)
+                 if (!(ip.IsIPv6LinkLocal || ip.IsIPv6Multicast || ip.IsIPv6SiteLocal))
+                 {
+                     AmidaClientService20.Service.DestIP = ip.ToString();
+                     break; 
+                 }
+                     
             IAmidaService = RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(IAmidaService),
                 RemoteInterface.RemoteBuilder.getRemoteUri(AmidaClientService20.Service.DestIP, 9090, "AmidaService")) as IAmidaService;
 #if WANA

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ReportProgressData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <eq_id>SSHMC610</eq_id>
+  <status>Product</status>
+  <current_test_wafer_id>BH119C-P002_5</current_test_wafer_id>
+  <total_num_wafer>4</total_num_wafer>
+  <tested_num_wafer>2</tested_num_wafer>
+  <total_num_chip>192</total_num_chip>
+  <tested_num_chip>62</tested_num_chip>
+  <timestamp>2015-06-19T16:46:33.0000000+08:00</timestamp>
+</ReportProgressData>

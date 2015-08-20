@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<VerifyNoteData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Fail>31</Fail>
+  <MAP>C:\A3000\Map\BH119VC.ini</MAP>
+  <Operators>02515</Operators>
+  <PCID>BH1192011QS0BMV0031</PCID>
+  <Pass>0</Pass>
+  <RCP>SSHMC610</RCP>
+  <StartTimes>2015-06-19T16:53:36</StartTimes>
+  <StopTimes>2015-06-19T16:57:28</StopTimes>
+  <TPS>C:\A3000\TPS\BH119V_A3KQ_V05.TPS</TPS>
+  <TestVerify>Test</TestVerify>
+  <TestVerifyDate>2015-06-19T16:53:36</TestVerifyDate>
+  <TouchDo>9</TouchDo>
+  <WaferID>BH119C-P003_2</WaferID>
+  <HasWarning>N</HasWarning>
+  <ProbeShape>4</ProbeShape>
+  <OverDrive>0.00</OverDrive>
+</VerifyNoteData>

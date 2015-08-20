@@ -9,10 +9,12 @@ namespace slAmidaConsole.Web
     {
         public DateTime? TimeStamp { get; set; }
         public string Lot_ID { get; set; }
-        public string Wafer_ID { get; set; }
+        public string Wafer_ID_IN { get; set; }
+        public string Wafer_ID_OUT { get; set; }
         public int? Num_Tested_Wafer { get; set; }
         public string TPS { get; set; }
-        public double? OD { get; set; }
+        public double? OD_OUT { get; set; }
+        public double? OD_IN { get; set; }
         public string RCP { get; set; }
         public string Operator { get; set; }
         public double? NeedleBody { get; set; }

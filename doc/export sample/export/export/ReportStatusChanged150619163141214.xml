@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ReportStatusChangedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <eq_id>SSHMC610</eq_id>
+  <eq_status>LEM</eq_status>
+  <lot_id></lot_id>
+  <probe_card_id></probe_card_id>
+  <recipe></recipe>
+  <fab>FAB-2</fab>
+  <eq_operator></eq_operator>
+  <total_num_wafer>0</total_num_wafer>
+  <wafer_id></wafer_id>
+  <over_drive>0</over_drive>
+  <sub_status></sub_status>
+  <start_time>2015-06-19T16:31:41.0000000+08:00</start_time>
+</ReportStatusChangedData>
