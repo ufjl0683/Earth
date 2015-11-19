@@ -85,7 +85,7 @@ namespace slAmidaConsole.Web
 
             string html="<table id=\"tblProbecardWorkSheet\"><thead><tr>";
 
-            html += " <th>TimeStamp</th><th>Lot_ID</th><th>Wafer_ID_In</th><th>Wafer_ID_Out</th><th>T/V</th><th>#</th><th>RCP</th><th>recipe</th><th>OD_In</th><th>OD_Out</th><th>Operator</th><th>針身</th><th>針點</th><th>卡況</th><th >備註</th>";
+            html += " <th>TimeStamp</th><th>Lot_ID</th><th>Wafer_ID_In</th><th>Wafer_ID_Out</th><th>T/V</th><th>PCS</th><th>RCP</th><th>recipe</th><th>OD_In</th><th>OD_Out</th><th>Operator</th><th>針身</th><th>針點</th><th>卡況</th><th >備註</th>";
 
 
             html += "</th></thead>";

@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCMClientService", "PCMClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqltest", "sqltest\sqltest.csproj", "{36AFE59F-949D-44C1-A398-74C400BA3A22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STDFMaker", "..\..\STDFMaker\STDFMaker.csproj", "{1661589E-4755-4960-8B46-97DF5078EFD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,16 @@ Global
 		{36AFE59F-949D-44C1-A398-74C400BA3A22}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{36AFE59F-949D-44C1-A398-74C400BA3A22}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{36AFE59F-949D-44C1-A398-74C400BA3A22}.Release|x86.ActiveCfg = Release|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1661589E-4755-4960-8B46-97DF5078EFD7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
