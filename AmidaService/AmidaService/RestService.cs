@@ -9,7 +9,7 @@ using System.Text;
 namespace AmidaServerService
 {
     // 注意: 您可以使用 [重構] 功能表上的 [重新命名] 命令同時變更程式碼和組態檔中的類別名稱 "RestService"。
-      [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] 
+      [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,ConcurrencyMode=ConcurrencyMode.Multiple )] 
     public class RestService : IRestService
     {
          public RestService()

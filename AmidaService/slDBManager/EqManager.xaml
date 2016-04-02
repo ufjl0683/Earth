@@ -7,7 +7,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="slAmidaConsole.EqManager"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" Loaded="UserControl_Loaded" Background="{x:Null}">
-    <toolkit:TwilightBlueTheme>
+    <!--<toolkit:TwilightBlueTheme>-->
 		<Grid x:Name="LayoutRoot"  >
 			<Grid.RowDefinitions>
 				<RowDefinition Height="0.08*" />
@@ -63,6 +63,6 @@
             <HyperlinkButton Content="TMS OI" FontSize="13" Grid.RowSpan="2" Height="22" HorizontalAlignment="Left" Margin="10,5,0,0" Name="hyperlinkButton1" NavigateUri="http://10.3.231.140/pcmsqltest/tms%20oi.pdf" TargetName="_blank" VerticalAlignment="Top" Width="57" />
         </Grid>
 
-	</toolkit:TwilightBlueTheme>
+	<!--</toolkit:TwilightBlueTheme>-->
 
 </navigation:Page>

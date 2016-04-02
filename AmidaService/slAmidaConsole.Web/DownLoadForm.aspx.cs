@@ -787,15 +787,21 @@ public string Encode(string strEnc)
             }
             else
             {
+                //var q = from n in this.db.tblEQHistory.Where(whereStr, new System.Data.Objects.ObjectParameter("p0", StartTimes), new System.Data.Objects.ObjectParameter("p1", StopTimes))
+                //        group n by n.@operator into g
+                //        select new RptSchema.rptPerformanceSchema{ Operator=g.Key,ProductTotal=g.Count(p=>p.status=="Product") };
+
+
                 var q = from n in this.db.tblEQHistory.Where(whereStr, new System.Data.Objects.ObjectParameter("p0", StartTimes), new System.Data.Objects.ObjectParameter("p1", StopTimes))
                         group n by n.@operator into g
                         select new RptSchema.rptPerformanceSchema
                         {
-                            Operator = "'"+g.Key,
+                            Operator = "'" + g.Key,
                             ProductTotal = g.Count(p => p.status == "Product"),
                             VerifyTotal = g.Count(p => p.status == "Verify"),
                             Total = g.Count(p => p.status == "Product" || p.status == "Verify")
                         };
+
                 foreach (RptSchema.rptPerformanceSchema r in q)
                 {
                     ds.rptPerformanceIndex.AddrptPerformanceIndexRow(r.XLabel, r.Operator, (long)r.ProductTotal, (long)r.VerifyTotal, (long)r.Total);

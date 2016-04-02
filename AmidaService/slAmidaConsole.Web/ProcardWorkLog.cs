@@ -27,6 +27,8 @@ namespace slAmidaConsole.Web
         {
 
             get{
+                if (Is_pc_rec_tbl)
+                    return "";
                 if (status == "Product")
                     return "T";
                 else
@@ -34,6 +36,12 @@ namespace slAmidaConsole.Web
             }
         
         
+        }
+        public bool Is_pc_rec_tbl
+        {
+            get;
+            set;
+
         }
     }
 }

@@ -49,7 +49,8 @@ namespace slAmidaConsole.Web
                           NeedleStatus="",
                           status=n.status,
                            Comment="",
-                         recipe=n.recipe
+                         recipe=n.recipe,
+                         Is_pc_rec_tbl = false
                           
 
 
@@ -76,8 +77,8 @@ namespace slAmidaConsole.Web
                           NeedleStatus= n1.PC_status,
                              status="",
                           Comment=n1.PC_comment,
-                          recipe=""
-                       
+                          recipe="",
+                          Is_pc_rec_tbl=true
                          
                              
                              
