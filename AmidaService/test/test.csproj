@@ -65,6 +65,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ITP_Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\PMSService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,12 +96,14 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\AmidaEntities.datasource" />
+    <None Include="Service References\ITP_Service\ITP_WebService.wsdl" />
     <None Include="Service References\PMSService\PMS_WebService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ITP_Service\" />
     <WCFMetadataStorage Include="Service References\PMSService\" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +178,13 @@
     <Content Include="ReportStatusChanged131009144610-ERR.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Service References\ITP_Service\ITP_WebService.disco" />
+    <None Include="Service References\ITP_Service\configuration91.svcinfo" />
+    <None Include="Service References\ITP_Service\configuration.svcinfo" />
+    <None Include="Service References\ITP_Service\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="WIP-Result.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

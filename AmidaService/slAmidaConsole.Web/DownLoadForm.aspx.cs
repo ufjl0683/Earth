@@ -20,10 +20,11 @@ namespace slAmidaConsole.Web
 
         string filename="download"  ;
         int rptid;
-        slAmidaConsole.Web.AmidaEntities db = new AmidaEntities();
+        slAmidaConsole.Web.AmidaEntities db = new AmidaEntities() { CommandTimeout = 100 };
         //string selectday, selectYestaday,Istilt,Zaxis;
         protected void Page_Load(object sender, EventArgs e)
         {
+            // db.CommandTimeout = 100;
             //WriteXls();
             //string sensorID = Request["id"].ToString(), selectDate ="";
             

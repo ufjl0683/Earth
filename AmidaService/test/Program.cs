@@ -33,10 +33,56 @@ namespace test
         public int Receipe { get; set; }
 
     }
+
+    
+
+
+ 
+
+
     class Program
     {
+        public    static string IPT_String="<?xml version=\"1.0\"?>\n"+ 
+        "<REQ>\n" +
+        "<CLIINFO>yuchilin.winfoundry.com;fe80::508:e0ff:787c:c2c2%10</CLIINFO>\n"+ 
+        "<USERID>Loader</USERID>\n"+ 
+        "<PERMISSION>R</PERMISSION>\n"+ 
+        "<SRVPROCESSS>MCN_NUM</SRVPROCESSS>\n"+ 
+        "<VERSION>1.0.0.0</VERSION>\n"+ 
+        "<TASK>Qry_MCNNUM</TASK>\n"+
+        "<ELE NAME=\"\">\n"+ 
+                "<ATTR NAME=\"LotID\">@LotID</ATTR>\n"+ 
+                "<ATTR NAME=\"WaferID\">@WaferID</ATTR>\n"+ 
+       " </ELE>\n"+ 
+       "</REQ>\n";
+
+
         static void Main(string[] args)
         {
+
+            string MDBname = "BH638-002_2";
+            string[] fileNameParts = MDBname.Replace("_", "-").Split(new char[] { '-' });
+ 
+                  String LotID= fileNameParts[0].Substring(0, 5)+(char.IsLetter(fileNameParts[1][0])? fileNameParts[1]:"-"+fileNameParts[1]);
+                  string WaferID = string.Format("{0:00}", int.Parse(fileNameParts[2]));
+            ITP_Service.Service1SoapClient client = new ITP_Service.Service1SoapClient();
+           // string querystr = IPT_String.Replace("@LotID", "VH638-003").Replace("@WaferID", "01");
+          //  string querystr = IPT_String.Replace("@LotID", "CP233P002").Replace("@WaferID", "02");
+            string querystr = IPT_String.Replace("@LotID", LotID).Replace("@WaferID", WaferID);
+             string  res= client.ITP_WebService(querystr);
+             System.Xml.XmlDocument doc = new XmlDocument();
+             doc.LoadXml(res);
+            
+             Console.WriteLine(res);
+             if (doc.GetElementsByTagName("ROW").Count > 0)
+                 Console.WriteLine("MCNNUM:" + doc.GetElementsByTagName("ROW")[0].InnerText);
+             else
+             {
+                 foreach (XmlElement e in doc.GetElementsByTagName("ATTR"))
+                     Console.WriteLine(e.Attributes["NAME"].Value+":"+e.InnerText);
+             }
+
+             Console.ReadKey();
      //       string res = "[0000000I: skwerewr @recpipename][eee]";
      //       if (!res.StartsWith("[0000000I:"))
      //           return;
@@ -86,7 +132,7 @@ namespace test
      ////       SetCompleted("AH770P102-05");
      //  //   string res=  AutoMes("IN","aa","AS370-1.000","trk-07", "190.0300");
      // //    Console.WriteLine(res);
-            GetPerformanceTotalBySql("it.Start_Time >= @p0 and it.Start_Time <@p1 and it.stop_time >=@p0 and it.stop_time <@p1", new DateTime(2015, 7, 1), new DateTime(2015, 7, 2)); 
+       //     GetPerformanceTotalBySql("it.Start_Time >= @p0 and it.Start_Time <@p1 and it.stop_time >=@p0 and it.stop_time <@p1", new DateTime(2015, 7, 1), new DateTime(2015, 7, 2)); 
                   
             Console.ReadKey();
         }
