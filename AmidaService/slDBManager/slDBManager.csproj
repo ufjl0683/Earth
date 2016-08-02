@@ -119,6 +119,7 @@
     <Compile Include="DbForms\tblUserGroupMenu.xaml.cs">
       <DependentUpon>tblUserGroupMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DomainContext_partial.cs" />
     <Compile Include="DownReleaseConverter.cs" />
     <Compile Include="DownReleaseEnableConverter.cs" />
     <Compile Include="EqManager.xaml.cs">
